@@ -19,3 +19,7 @@ export type ErrorResponse<T> =
     zodError?: never;
     customError: string;
   };
+
+export type PostBody = {
+  data: string
+}
