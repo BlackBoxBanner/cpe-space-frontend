@@ -1,5 +1,6 @@
 import { generateAesKey } from "@/lib/utils/encryption/generate"
 import forge from 'node-forge';
+import {useRsaPublicKey} from "@/contexts/rsaContext";
 
 type AesKeyPair = {
   key: string,
@@ -11,7 +12,7 @@ type EncryptedDataWithKey = {
   aesKeyEncrypted: string
 }
 
-type Encrypt = (data: unknown, publicKey: string) => string
+type Encrypt<T = unknown> = (data: T, publicKey: string) => string
 export const encrypt: Encrypt = (data, publicKey) => {
   const aesKey = generateAesKey()
   const encryptedData = encryptWithAes(data, aesKey)

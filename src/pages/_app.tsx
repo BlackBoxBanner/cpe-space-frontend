@@ -15,7 +15,7 @@ export default function App({
 }: AppProps & { publicKey: string }) {
 	return (
 		<RSAProvider rsaKey={publicKey}>
-			<Component {...pageProps} />;
+			<Component {...pageProps} />
 		</RSAProvider>
 	);
 }

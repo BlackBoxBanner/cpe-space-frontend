@@ -1,9 +1,10 @@
 import axios from "axios";
+import { env } from "@/lib/env"
 
 const instance = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_BACKEND_URL}`,
+  baseURL: `${env.BACKEND_URL}`,
   headers: {
-    Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
+    Authorization: `Bearer ${env.API_TOKEN}`
   },
 })
 
