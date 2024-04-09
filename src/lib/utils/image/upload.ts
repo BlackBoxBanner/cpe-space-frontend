@@ -1,9 +1,9 @@
 "use client"
 
-import {axios} from "@/lib/axiosInstance";
-import {ReturnResponse} from "@/types/ResponseType";
-import forge from "node-forge"
-import {getBase64} from "@/lib/utils/base64";
+import { axios } from "@/lib/axiosInstance";
+import { ReturnResponse } from "@/types/ResponseType";
+import { getBase64 } from "@/lib/utils/base64";
+import { isAxiosError } from "axios";
 
 type Upload = (file: File, name?: string) => Promise<ReturnResponse<string>>
 
@@ -14,7 +14,10 @@ export const upload: Upload = async (file, name = file.name) => {
       base64: await getBase64(file)
     })
     return res.data
-  } catch (error: any) {
-    return error.response.data as ReturnResponse<string>
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      return error.response?.data
+    }
+    return { error: { customError: "An error occurred while uploading the image" } }
   }
 }
