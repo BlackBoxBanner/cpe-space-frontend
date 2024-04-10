@@ -6,6 +6,7 @@ import { imagePath } from "@/lib/utils/image/get";
 import Image from "next/image";
 import { useState } from "react";
 import { deleteImage } from "@/lib/utils/image/delete";
+import { DemoEvent } from "@/components/DemoEvent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function Home() {
 				<input onChange={(e) => setDeletePath(e.target.value)} />
 				<button type="submit">delete</button>
 			</form>
+			<DemoEvent />
 		</main>
 	);
 }
