@@ -30,8 +30,8 @@ export const BlogSchema = zod.object({
   title: zod.string(),
   content: zod.string(),
   published: zod.boolean(),
-  createdAt: zod.string(),
-  updatedAt: zod.string(),
+  createdAt: zod.date(),
+  updatedAt: zod.date(),
 })
 
 export const BlogFormSchema = BlogSchema.omit({ id: true, createdAt: true, updatedAt: true })
@@ -59,15 +59,11 @@ export const MessageSchema = zod.object({
   authorId: zod.string(),
   content: zod.string(),
   read: zod.boolean(),
-  createdAt: zod.string(),
-  updatedAt: zod.string(),
+  createdAt: zod.date(),
+  updatedAt: zod.date(),
 })
 
-export const MessageFormSchema = MessageSchema.omit({ id: true, createdAt: true, updatedAt: true })
-
 export type MessageType = zod.infer<typeof MessageSchema>
-
-export type MessageFormType = zod.infer<typeof MessageFormSchema>
 
 export const AnouncementSchema = zod.object({
   id: zod.string(),
@@ -75,15 +71,11 @@ export const AnouncementSchema = zod.object({
   title: zod.string(),
   content: zod.string(),
   published: zod.boolean(),
-  createdAt: zod.string(),
-  updatedAt: zod.string(),
+  createdAt: zod.date(),
+  updatedAt: zod.date(),
 })
 
-export const AnouncementFormSchema = AnouncementSchema.omit({ id: true, createdAt: true, updatedAt: true })
-
 export type AnouncementType = zod.infer<typeof AnouncementSchema>
-
-export type AnouncementFormType = zod.infer<typeof AnouncementFormSchema>
 
 export const EventPostSchema = zod.object({
   id: zod.string(),
@@ -92,41 +84,29 @@ export const EventPostSchema = zod.object({
   content: zod.string(),
   published: zod.boolean(),
   eventId: zod.string(),
-  createdAt: zod.string(),
-  updatedAt: zod.string(),
+  createdAt: zod.date(),
+  updatedAt: zod.date(),
 })
 
-export const EventPostFormSchema = EventPostSchema.omit({ id: true, createdAt: true, updatedAt: true })
-
 export type EventPostType = zod.infer<typeof EventPostSchema>
-
-export type EventPostFormType = zod.infer<typeof EventPostFormSchema>
 
 export const EventSchema = zod.object({
   id: zod.string(),
   authorId: zod.string(),
   title: zod.string(),
   content: zod.string(),
-  eventDate: zod.string(),
-  createdAt: zod.string(),
-  updatedAt: zod.string(),
+  eventDate: zod.date(),
+  createdAt: zod.date(),
+  updatedAt: zod.date(),
 })
 
-export const EventFormSchema = EventSchema.omit({ id: true, createdAt: true, updatedAt: true })
-
 export type EventType = zod.infer<typeof EventSchema>
-
-export type EventFormType = zod.infer<typeof EventFormSchema>
 
 export const EventParticipantsSchema = zod.object({
   id: zod.string(),
   eventId: zod.string(),
   userId: zod.string(),
-  createdAt: zod.string(),
+  createdAt: zod.date(),
 })
 
 export type EventParticipantsType = zod.infer<typeof EventParticipantsSchema>
-
-export const EventParticipantsFormSchema = EventParticipantsSchema.omit({ id: true, createdAt: true })
-
-export type EventParticipantsFormType = zod.infer<typeof EventParticipantsFormSchema>
