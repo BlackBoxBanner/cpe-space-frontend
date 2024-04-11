@@ -1,6 +1,6 @@
 import { Button, Input } from "@/components/demo";
 import { getEvent, getMenyEvents } from "@/lib/utils/events";
-import { patchPostEvent } from "@/lib/utils/events/post";
+import { patchPostEvent, postPostEvent } from "@/lib/utils/events/post";
 import { EventPostSchema, EventPostType, EventType } from "@/types/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormEvent, useEffect, useState } from "react";
@@ -55,7 +55,7 @@ const RegsiterPostEvent = () => {
 
 	const onSubmitHandler = handleSubmit(async (data) => {
 		console.log(data);
-		const res = await patchPostEvent("1", data);
+		const res = await postPostEvent(data);
 	});
 
 	useEffect(() => {}, [
