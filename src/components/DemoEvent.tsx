@@ -1,6 +1,6 @@
 import { Button, Input } from "@/components/demo";
 import { getEvent, getMenyEvents } from "@/lib/utils/events";
-import { patchPostEvent, postPostEvent } from "@/lib/utils/events/post";
+import { postPostEvent } from "@/lib/utils/events/post";
 import { EventPostSchema, EventPostType, EventType } from "@/types/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormEvent, useEffect, useState } from "react";
