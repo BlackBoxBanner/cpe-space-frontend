@@ -3,11 +3,13 @@ import { UserFormType } from "@/types/zodSchema";
 import { axios } from "@/libs/axiosInstance";
 import { encrypt } from "@/libs/utils/encryption";
 
+export type RegisterProps = UserFormType & {
+  confirmPassword: string;
+  publicKey: string;
+}
+
 type Register = (
-  props: UserFormType & {
-    confirmPassword: string;
-    publicKey: string;
-  },
+  props: RegisterProps,
 ) => Promise<ReturnResponse<string>>;
 
 export const register: Register = async ({

@@ -7,6 +7,19 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      "smoky-black": "#0D0D0D",
+      alabaster: "#F3F4E5",
+      gray: "#B7B6BF",
+      timberwolf: "#DCDCD1",
+      liberty: "#4960AC",
+      "cobalt-blue": "#83B3E1",
+      orange: "#F15825",
+      "yellow-orange": "#FCB43E",
+      white: "#FFFFFF",
+      yonder: "#9EAAC9",
+      error: "#DC241F"
+    },
     extend: {
       fontFamily: {
         sans: [
@@ -16,18 +29,6 @@ const config: Config = {
           "sans-serif",
         ],
         decorate: ["var(--font-space-grotesk)", "Nunito", "sans-serif"],
-      },
-      colors: {
-        "smoky-black": "#0D0D0D",
-        alabaster: "#F3F4E5",
-        gray: "#B7B6BF",
-        timberwolf: "#DCDCD1",
-        liberty: "#4960AC",
-        "cobalt-blue": "#83B3E1",
-        orange: "#F15825",
-        "yellow-orange": "#FCB43E",
-        white: "#FFFFFF",
-        yonder: "#9EAAC9",
       },
     },
   },

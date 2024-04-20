@@ -1,28 +1,40 @@
 "use client";
 
 import { UserType } from "@/types/zodSchema";
-import { axios } from "@/libs/axiosInstance";
+import axios from "axios";
+import { axios as axiosInstance } from "@/libs/axiosInstance";
 import { ReturnResponse } from "@/types/ResponseType";
 import { encrypt } from "@/libs/utils/encryption";
 
-type SigninProps = Pick<UserType, "studentid" | "password"> & {
+export type SigninProps = Pick<UserType, "studentid" | "password"> & {
   publicKey: string;
 };
 
-type SigninHandler<J = SigninProps, T = ReturnResponse<string> | void> = (
-  props: J,
-) => Promise<T>;
+export type SigninPropsServer = {
+  data: string;
+}
 
-export const signin: SigninHandler<SigninProps> = async ({
+export const signinNext = async ({
   password,
   studentid,
   publicKey,
-}) => {
+}: SigninProps) => {
   try {
-    await axios.post("/api/auth/signin", {
-      data: encrypt({ password, studentid }, publicKey),
-    });
+
+    const res = await fetch("/api/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: encrypt({ password, studentid }, publicKey) }),
+    })
+
+    const data = await res.json();
+
+    return data
   } catch (error: any) {
-    return error.response?.data as ReturnResponse<string>;
+    return error.response?.data
   }
 };
+
+
