@@ -21,11 +21,6 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const cookieStore = cookies();
-	const session = cookieStore.get("cpe_space_session");
-	const userId = cookieStore.get("user-id");
-
-	console.log({ session, userId });
 	return (
 		<html lang="en">
 			<body

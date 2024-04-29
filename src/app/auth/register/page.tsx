@@ -16,6 +16,7 @@ const RegisterPage = async () => {
 				| "HEALTH_DATA_SCIENCE"
 				| "RESFENTIAL_COLLEGE",
 			name: formData.get("name") as string,
+			email: formData.get("email") as string,
 			publicKey: (await getResKey()).publicKey,
 		};
 		const res = await register(data);
@@ -39,6 +40,13 @@ const RegisterPage = async () => {
 					placeholder="Student ID"
 					name="studentid"
 					pattern="[0-9]{11}"
+					required
+				/>
+				<input
+					className="p-1 rounded"
+					type="email"
+					placeholder="Email"
+					name="email"
 					required
 				/>
 				<select

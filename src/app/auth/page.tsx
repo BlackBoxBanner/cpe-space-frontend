@@ -10,14 +10,12 @@ const WelcomePage = () => {
 				<Link
 					href={"/auth/signup"}
 					buttonStyle={{ color: "ghost", size: "lg" }}
-					prefetch
 				>
 					Sign up
 				</Link>
 				<Link
 					href={"/auth/signin"}
 					buttonStyle={{ color: "orange", size: "lg" }}
-					prefetch
 				>
 					Log in
 				</Link>

@@ -29,9 +29,10 @@ export const signinNext = async ({
       body: JSON.stringify({ data: encrypt({ password, studentid }, publicKey) }),
     })
 
-    const data = await res.json();
+    // if (res.status != 200) throw new Error(res.json());
 
-    return data
+    return res.json();
+
   } catch (error: any) {
     return error.response?.data
   }

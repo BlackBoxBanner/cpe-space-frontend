@@ -1,9 +1,14 @@
 import { cn } from "@dookdiks/utils";
 import { SigninForm } from "@/app/auth/_component/signinForm";
 import { getResKey } from "@/libs/utils/encryption/publicKey";
+import { axios } from "@/libs/axiosInstance";
+import { UserType } from "@/types/zodSchema";
 
 const SignInPage = async () => {
 	const rsaKey = await getResKey();
+	const users = await axios.get<{ data: UserType[] }>("/api/user", {});
+
+	const studentIds = users.data.data.map((user) => user.studentid);
 
 	return (
 		<>
@@ -14,7 +19,7 @@ const SignInPage = async () => {
 			>
 				Log in
 			</div>
-			<SigninForm rsaKey={rsaKey.publicKey} />
+			<SigninForm rsaKey={rsaKey.publicKey} studentid={studentIds} />
 		</>
 	);
 };

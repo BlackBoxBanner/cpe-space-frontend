@@ -9,7 +9,7 @@ import { Controller, useForm } from "react-hook-form";
 import zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { checkPassword } from "@/libs/utils/auth/checkPassword";
-import { getUserByStudentId } from "@/libs/utils/users/get";
+import { getUsers } from "@/libs/utils/users/get";
 import { changePassword } from "@/libs/utils/auth/changePassword";
 import { useRouter } from "next/navigation";
 
@@ -67,7 +67,7 @@ export const SignupForm = ({ rsaKey }: SignupFormProps) => {
 			});
 		}
 
-		const user = await getUserByStudentId(data.studentid);
+		const user = await getUsers({ studentid: data.studentid });
 
 		if (user.error) {
 			return signInSetError("password", {
@@ -75,7 +75,7 @@ export const SignupForm = ({ rsaKey }: SignupFormProps) => {
 			});
 		}
 
-		if (user.data.touched) {
+		if (user.data[0].touched) {
 			return signInSetError("password", {
 				message: "Invalid student ID or password",
 			});

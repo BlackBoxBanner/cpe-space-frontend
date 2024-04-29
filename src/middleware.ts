@@ -9,9 +9,7 @@ export function middleware(request: NextRequest) {
   const session = cookieStore.get("cpe_space_session");
   const userId = cookieStore.get("user-id");
 
-  console.log({ session, userId });
-
-  if (!request.nextUrl.pathname.startsWith('/auth') && (!session || !userId)) return NextResponse.rewrite(new URL("/auth", request.url))
+  if (!request.nextUrl.pathname.startsWith('/auth') && !request.nextUrl.pathname.includes("/change-password") && (!session || !userId)) return NextResponse.rewrite(new URL("/auth", request.url))
 
   if (request.nextUrl.pathname.startsWith('/auth')) {
     if (session && userId) return NextResponse.redirect(new URL("/", request.url))

@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/common/button";
-import { Input } from "@/app/auth/_component/input";
+import { Input, Password } from "@/app/auth/_component/input";
 import RightArrow from "@/components/icon/rightArrow";
 import { useState } from "react";
 import { signinNext } from "@/libs/utils/auth/signin";
@@ -9,9 +9,11 @@ import { Controller, useForm } from "react-hook-form";
 import zod from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type SigninFormProps = {
 	rsaKey: string;
+	studentid: string[];
 };
 
 const SigninSchema = zod.object({
@@ -21,7 +23,7 @@ const SigninSchema = zod.object({
 
 type SigninProps = zod.infer<typeof SigninSchema>;
 
-export const SigninForm = ({ rsaKey }: SigninFormProps) => {
+export const SigninForm = ({ rsaKey, studentid }: SigninFormProps) => {
 	const [page, setPage] = useState(0);
 
 	const routers = useRouter();
@@ -39,6 +41,7 @@ export const SigninForm = ({ rsaKey }: SigninFormProps) => {
 			password: data.password,
 			publicKey: rsaKey,
 		});
+
 		if (signinRes.error) {
 			return setError("password", {
 				message: "Invalid student ID or password",
@@ -46,6 +49,10 @@ export const SigninForm = ({ rsaKey }: SigninFormProps) => {
 		}
 
 		routers.push("/");
+	};
+
+	const isValidStudentId = (value: string) => {
+		return value.length !== 11 || !studentid.includes(value);
 	};
 
 	return (
@@ -60,26 +67,56 @@ export const SigninForm = ({ rsaKey }: SigninFormProps) => {
 						name="studentid"
 						render={({
 							field: { onChange, ...field },
-							fieldState: { error },
+							fieldState: { error, isDirty },
 						}) => (
 							<>
-								<Input
-									placeholder="Student ID"
-									error={!!error}
-									id="studentid"
-									onChange={(e) =>
-										onChange(
-											isNaN(Number(e.target.value)) ? "" : e.target.value
-										)
-									}
-									{...field}
-								/>
+								<div className="relative">
+									<Input
+										placeholder="Student ID"
+										error={!!error}
+										id="studentid"
+										onChange={(e) =>
+											onChange(
+												isNaN(Number(e.target.value)) ||
+													e.target.value.length > 11
+													? field.value
+													: e.target.value
+											)
+										}
+										{...field}
+									/>
+									<div className="absolute -bottom-10 left-0">
+										{field.value && field.value.length > 0 && (
+											<div className="flex justify-center gap-2 w-full text-nowrap">
+												{isValidStudentId(field.value) &&
+													field.value.length === 11 && (
+														<>
+															<p className="text-error">
+																Looks like you don't have an account.
+															</p>
+															<Link href="/auth/signup" passHref legacyBehavior>
+																<Button
+																	buttonStyle={{
+																		color: "link",
+																		size: "link",
+																		underline: true,
+																	}}
+																>
+																	Sign up
+																</Button>
+															</Link>
+														</>
+													)}
+											</div>
+										)}
+									</div>
+								</div>
 								<div className="absolute -bottom-24 right-0">
 									<Button
 										buttonStyle={{ size: "circle", color: "orange" }}
 										onClick={() => setPage((e) => e + 1)}
 										type="button"
-										disabled={field.value.length !== 11}
+										disabled={isValidStudentId(field.value)}
 									>
 										<RightArrow />
 									</Button>
@@ -90,25 +127,34 @@ export const SigninForm = ({ rsaKey }: SigninFormProps) => {
 				</div>
 			</IsPage>
 			<IsPage page={page} triggerPage={1}>
-				<div className="w-full flex flex-col gap-8">
+				<div className="w-full flex flex-col gap-8 relative">
 					<Controller
 						control={control}
 						name="password"
 						render={({ field, fieldState: { error } }) => (
 							<>
-								<Input
-									placeholder="Password"
-									type="password"
-									id="password"
-									error={!!error}
-									{...field}
-								/>
+								<div className="relative">
+									<Password
+										placeholder="Password"
+										type="password"
+										id="password"
+										error={!!error}
+										{...field}
+									/>
+								</div>
 							</>
 						)}
 					/>
 					<Button buttonStyle={{ size: "lg" }} type="submit">
 						Log in
 					</Button>
+					<div className="absolute -bottom-8 right-0">
+						<Link href="/change-password" passHref legacyBehavior>
+							<Button buttonStyle={{ color: "link", size: "link" }}>
+								Forgot password ?
+							</Button>
+						</Link>
+					</div>
 				</div>
 			</IsPage>
 		</form>

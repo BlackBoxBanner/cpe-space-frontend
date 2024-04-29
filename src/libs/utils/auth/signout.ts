@@ -1,14 +1,8 @@
-"use client"
+import { cookies } from "next/headers"
 
-import axios from "axios";
-import { ReturnResponse } from "@/types/ResponseType";
+export const signout = async () => {
+  const cookieStore = cookies()
 
-type SignOut<T = ReturnResponse<string> | void> = () => Promise<T>
-
-export const signout: SignOut = async () => {
-  try {
-    await axios.post<ReturnResponse<string>>("api/auth/signout")
-  } catch (error: any) {
-    return error.response.data as ReturnResponse<string>
-  }
+  cookieStore.delete("cpe_space_session")
+  cookieStore.delete("user-id")
 }

@@ -11,13 +11,15 @@ export const buttonVariants = tv({
 			orange: "bg-orange text-alabaster hover:bg-[#F2A685]",
 			ghost:
 				"bg-transparent text-smoky-black border-smoky-black border hover:border-timberwolf hover:text-timberwolf",
+			link: "text-liberty hover:text-[#9EAAC9]",
 		},
 		size: {
-			sm: "",
-			md: "py-3 px-2 text-base rounded-lg min-w-20",
-			lg: "py-5 px-4 text-[1.6rem] rounded-xl min-w-40",
+			sm: " w-full",
+			md: "py-3 px-2 text-base rounded-lg min-w-20 w-full",
+			lg: "py-5 px-4 text-[1.6rem] rounded-xl min-w-40 w-full",
 			free: "",
 			circle: "rounded-full aspect-square p-4",
+			link: "",
 		},
 		position: {
 			start: "text-start",
@@ -27,12 +29,16 @@ export const buttonVariants = tv({
 		widthFull: {
 			true: "w-full",
 		},
+		underline: {
+			true: "",
+		},
 	},
 	defaultVariants: {
 		color: "orange",
 		size: "md",
 		widthFull: false,
 		position: "center",
+		underline: false,
 	},
 });
 
@@ -47,14 +53,25 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 	({ asChild = false, buttonStyle, ...props }, ref) => {
 		const Comp = asChild ? Slot : "button";
 		return (
-			<Comp
-				className={buttonVariants({
-					...buttonStyle,
-					class: props.className,
-				})}
-				ref={ref}
-				{...props}
-			/>
+			<div className="relative group w-full">
+				<Comp
+					className={buttonVariants({
+						...buttonStyle,
+						class: props.className,
+					})}
+					ref={ref}
+					{...props}
+				/>
+
+				{buttonStyle?.underline ? (
+					<span
+						className={cn(
+							"absolute w-[0%] group-hover:w-full border-b -bottom-1 left-0 ease-in-out duration-300 border-liberty group-hover:border-[#9EAAC9]"
+						)}
+					/>
+				) : null}
+				{}
+			</div>
 		);
 	}
 );
