@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/common/button";
-import { Input } from "@/app/auth/_component/input";
+import { Input, Password } from "@/app/auth/_component/input";
 import RightArrow from "@/components/icon/rightArrow";
 import { useState } from "react";
 import { cn } from "@dookdiks/utils";
@@ -166,7 +166,7 @@ export const SignupForm = ({ rsaKey }: SignupFormProps) => {
 								name="password"
 								render={({ field, fieldState: { error } }) => (
 									<>
-										<Input
+										<Password
 											placeholder="Password"
 											id="password"
 											type="password"
@@ -198,9 +198,10 @@ export const SignupForm = ({ rsaKey }: SignupFormProps) => {
 								name="newPassword"
 								render={({ field, fieldState: { error } }) => (
 									<>
-										<Input
+										<Password
 											placeholder="New password"
 											error={!!error}
+											type="password"
 											id="newPassword"
 											{...field}
 										/>
@@ -225,7 +226,7 @@ export const SignupForm = ({ rsaKey }: SignupFormProps) => {
 								name="repetePassword"
 								render={({ field, fieldState: { error } }) => (
 									<>
-										<Input
+										<Password
 											placeholder="Repeat password"
 											id="repetePassword"
 											type="password"
