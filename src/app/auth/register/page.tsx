@@ -1,32 +1,30 @@
+"use client";
+
 import { Button } from "@/components/common/button";
-import { RegisterProps, register } from "@/libs/utils/auth/register";
-import { getResKey } from "@/libs/utils/encryption/publicKey";
-import { permanentRedirect, redirect } from "next/navigation";
+import { useRef } from "react";
+import { registerServerAction } from "./_action/register";
 
-const RegisterPage = async () => {
-	const handleSubmit = async (formData: FormData) => {
-		"use server";
-		const data: RegisterProps = {
-			confirmPassword: formData.get("studentid") as string,
-			password: formData.get("studentid") as string,
-			studentid: formData.get("studentid") as string,
-			program: formData.get("program") as
-				| "REGULAR"
-				| "INTERNATIONAL"
-				| "HEALTH_DATA_SCIENCE"
-				| "RESFENTIAL_COLLEGE",
-			name: formData.get("name") as string,
-			email: formData.get("email") as string,
-			publicKey: (await getResKey()).publicKey,
-		};
-		const res = await register(data);
+const RegisterPage = () => {
+	const ref = useRef<HTMLFormElement>(null);
 
-		if (!res.error) permanentRedirect("/auth/register");
+	const registerClientAction = async (formData: FormData) => {
+		const actionData = await registerServerAction(formData);
+
+		if (actionData) {
+			alert("User Created");
+			ref.current?.reset();
+		} else {
+			alert("Error - User not created");
+		}
 	};
 	return (
 		<>
 			<div className="text-[4rem]">Register</div>
-			<form className="flex flex-col gap-2 w-full" action={handleSubmit}>
+			<form
+				ref={ref}
+				className="flex flex-col gap-2 w-full"
+				action={registerClientAction}
+			>
 				<input
 					className="p-1 rounded"
 					type="text"
