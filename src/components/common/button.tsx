@@ -36,6 +36,12 @@ export const buttonVariants = tv({
 		active: {
 			orange: "bg-orange text-alabaster border-orange hover:bg-[#F2A685]",
 		},
+		border: {
+            none: "border-none",
+            1: "border",
+            2: "border-2",
+            3: "border-3",
+        },
 	},
 	defaultVariants: {
 		color: "orange",
