@@ -20,6 +20,7 @@ export const buttonVariants = tv({
 			free: "",
 			circle: "rounded-full aspect-square p-4",
 			link: "",
+			"min-width": "w-auto py-3 px-2 text-base rounded-full min-w-28",
 		},
 		position: {
 			start: "text-start",
@@ -31,6 +32,9 @@ export const buttonVariants = tv({
 		},
 		underline: {
 			true: "",
+		},
+		active: {
+			orange: "bg-orange text-alabaster border-orange hover:bg-[#F2A685]",
 		},
 	},
 	defaultVariants: {
@@ -56,8 +60,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			<div className="relative group w-full">
 				<Comp
 					className={buttonVariants({
-						...buttonStyle,
 						class: props.className,
+						...buttonStyle,
 					})}
 					ref={ref}
 					{...props}
