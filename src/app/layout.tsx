@@ -21,17 +21,61 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const cookieStore = cookies();
+
+	const session = cookieStore.get("cpe_space_session");
+	const user = cookieStore.get("user-id");
+
 	return (
 		<html lang="en">
 			<body
 				className={cn(
 					outfit.variable,
 					spaceGrotesk.variable,
-					"font-sans bg-liberty min-h-dvh"
+					"font-sans bg-liberty min-h-dvh overflow-auto"
 				)}
 			>
-				{children}
+				{session && user ? <MainLayout>{children}</MainLayout> : children}
 			</body>
 		</html>
 	);
 }
+
+const MainLayout = async ({ children }: { children: React.ReactNode }) => {
+	return (
+		<>
+			<header className="sticky top-0 z-50">
+				<MainNavBar />
+			</header>
+			<div className="h-full grid grid-rows-[1fr,auto]">
+				<section className="bg-alabaster max-h-[85.5dvh] overflow-hidden rounded-[1.75rem] grid grid-cols-[350px,auto,1fr] gap-x-6 p-4 relative">
+					<MainSideBar />
+					<span className="border-r border-r-smoky-black" />
+					<div className="overflow-auto">{children}</div>
+				</section>
+				<footer className="h-12"></footer>
+			</div>
+		</>
+	);
+};
+
+const MainNavBar = async () => {
+	return (
+		<>
+			<nav className="h-[4.25rem] relative flex justify-between items-center px-4 ">
+				<form method="get" action={"/search"}>
+					<input type="search" name="input" id="search-input" />
+				</form>
+				<div>feature</div>
+			</nav>
+		</>
+	);
+};
+
+const MainSideBar = async () => {
+	return (
+		<>
+			<nav className="sticky overflow-scroll left-0 pr-6">sidebar</nav>
+		</>
+	);
+};

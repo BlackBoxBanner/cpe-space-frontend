@@ -33,6 +33,11 @@ export default function Home() {
 			<form action={signOutFormAction}>
 				<Button type="submit">Signout</Button>
 			</form>
+			<div className="h-screen">test</div>
+			<div className="h-screen">test</div>
+			<div className="h-screen">test</div>
+			<div className="h-screen">test</div>
+			<div className="h-screen">test</div>
 		</main>
 	);
 }

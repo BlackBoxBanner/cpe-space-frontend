@@ -11,6 +11,7 @@ const config: Config = {
       "smoky-black": "#0D0D0D",
       alabaster: "#F3F4E5",
       gray: "#B7B6BF",
+      "gray-white": "#BEBFB6",
       timberwolf: "#DCDCD1",
       liberty: "#4960AC",
       "cobalt-blue": "#83B3E1",
