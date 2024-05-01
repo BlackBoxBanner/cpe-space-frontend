@@ -14,7 +14,7 @@ const SignInPage = async () => {
 		<>
 			<div
 				className={cn(
-					"w-[41rem] text-[3.75rem] font-semibold flex items-center min-h-52"
+					"lg:w-[41rem] text-[3.75rem] font-semibold flex items-center min-h-52 w-auto"
 				)}
 			>
 				Log in

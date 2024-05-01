@@ -46,7 +46,7 @@ export const WelcomeText = () => {
 				<p
 					id="welcome-text"
 					className={cn(
-						"text-[3.75rem] font-semibold flex overflow-hidden gap-4"
+						"text-2xl md:text-4xl lg:text-[3.75rem] font-semibold flex overflow-hidden h-min py-2 gap-4"
 					)}
 				>
 					<span className="animate-welcome-1 opacity-0">Welcome to</span>

@@ -112,7 +112,7 @@ export const SignupForm = ({ rsaKey }: SignupFormProps) => {
 		<>
 			<div
 				className={cn(
-					"w-[41rem] text-[3.75rem] font-semibold flex justify-center items-start flex-col min-h-52 gap-2"
+					" lg:w-[41rem] text-[3.75rem] font-semibold flex items-start min-h-52 w-auto justify-center flex-col gap-2"
 				)}
 			>
 				<div>{0 <= page || page >= 1 ? "Sign up" : "Change password"}</div>
