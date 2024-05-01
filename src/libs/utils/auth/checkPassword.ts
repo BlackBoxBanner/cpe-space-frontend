@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import { UserType } from "@/types/zodSchema";
 import { axios } from "@/libs/axiosInstance";

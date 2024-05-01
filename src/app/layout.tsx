@@ -27,7 +27,7 @@ export default async function RootLayout({
 				className={cn(
 					outfit.variable,
 					spaceGrotesk.variable,
-					"font-sans bg-liberty min-h-screen"
+					"font-sans bg-liberty min-h-dvh"
 				)}
 			>
 				{children}

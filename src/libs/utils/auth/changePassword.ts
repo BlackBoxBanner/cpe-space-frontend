@@ -1,5 +1,7 @@
+"use server"
+
 import { ReturnResponse } from "@/types/ResponseType";
-import { UserFormType, UserType } from "@/types/zodSchema";
+import { UserType } from "@/types/zodSchema";
 import { axios } from "@/libs/axiosInstance";
 import { encrypt } from "@/libs/utils/encryption";
 
@@ -14,6 +16,9 @@ export const changePassword: ChangePassword = async ({
   password,
   publicKey,
 }) => {
+
+  console.log({ studentid, password, publicKey });
+
   try {
     const res = await axios.post<ReturnResponse<string>>("api/auth/change-password", {
       data: encrypt(
