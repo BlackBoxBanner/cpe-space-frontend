@@ -5,10 +5,11 @@ import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@dookdiks/utils";
 
 export const buttonVariants = tv({
-	base: "font-sans ease-in-out duration-300 disabled:bg-timberwolf disabled:text-alabaster",
+	base: "font-sans ease-in-out duration-300 disabled:bg-timberwolf disabled:border-timberwolf disabled:text-alabaster",
 	variants: {
 		color: {
-			orange: "bg-orange text-alabaster hover:bg-[#F2A685]",
+			orange:
+				"bg-orange text-alabaster hover:bg-[#F2A685] border-orange border hover:border-[#F2A685]",
 			ghost:
 				"bg-transparent text-smoky-black border-smoky-black border hover:border-timberwolf hover:text-timberwolf",
 			link: "text-liberty hover:text-[#9EAAC9]",
@@ -20,7 +21,6 @@ export const buttonVariants = tv({
 			free: "",
 			circle: "rounded-full aspect-square p-4",
 			link: "",
-			"min-width": "w-auto py-3 px-2 text-base rounded-full min-w-28",
 		},
 		position: {
 			start: "text-start",
@@ -37,11 +37,11 @@ export const buttonVariants = tv({
 			orange: "bg-orange text-alabaster border-orange hover:bg-[#F2A685]",
 		},
 		border: {
-            none: "border-none",
-            1: "border",
-            2: "border-2",
-            3: "border-3",
-        },
+			none: "border-none",
+			1: "border",
+			2: "border-2",
+			3: "border-3",
+		},
 	},
 	defaultVariants: {
 		color: "orange",
@@ -60,14 +60,18 @@ type ButtonProps = ComponentProps<"button"> & {
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-	({ asChild = false, buttonStyle, ...props }, ref) => {
+	({ asChild = false, buttonStyle, className, ...props }, ref) => {
 		const Comp = asChild ? Slot : "button";
 		return (
-			<div className="relative group w-full">
+			<div
+				className={cn("relative group h-fit", {
+					"w-full": buttonStyle?.widthFull,
+				})}
+			>
 				<Comp
 					className={buttonVariants({
-						class: props.className,
 						...buttonStyle,
+						className: className,
 					})}
 					ref={ref}
 					{...props}

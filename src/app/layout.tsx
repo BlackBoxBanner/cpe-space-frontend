@@ -3,7 +3,6 @@ import { Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@dookdiks/utils";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { BiBell } from "react-icons/bi";
 import { BiChat } from "react-icons/bi";
 import { FaRegCircle } from "react-icons/fa";
@@ -95,24 +94,11 @@ const MainSideBar = async () => {
 	return (
 		<>
 			<nav className="sticky overflow-scroll left-0 pr-6">
-				<SideBarButton
-					Icon={() => <BiHome />}
-					title="Home"
-				/>
-				<SideBarButton
-					Icon={() => <BiRocket />}
-					title="Trending"
-				/>
-				<SideBarButton
-					Icon={() => <BiHive />}
-					title="Communities"
-				/>
-				<SideBarButton
-					Icon={() => <AiOutlinePushpin />}
-					title="Topics"
-				/>
+				<SideBarButton Icon={() => <BiHome />} title="Home" />
+				<SideBarButton Icon={() => <BiRocket />} title="Trending" />
+				<SideBarButton Icon={() => <BiHive />} title="Communities" />
+				<SideBarButton Icon={() => <AiOutlinePushpin />} title="Topics" />
 			</nav>
-
 		</>
 	);
 };

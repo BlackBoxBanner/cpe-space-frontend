@@ -1,7 +1,17 @@
 import { ReturnResponse } from "@/types/ResponseType";
-import { UserFormType } from "@/types/zodSchema";
 import { axios } from "@/libs/axiosInstance";
 import { encrypt } from "@/libs/utils/encryption";
+import { z } from "zod";
+import { UserSchema } from "@/types/zodSchema";
+
+
+const UserFormSchema = UserSchema.omit({
+  id: true,
+  touched: true,
+  role: true,
+})
+
+type UserFormType = z.infer<typeof UserFormSchema>
 
 export type RegisterProps = UserFormType & {
   confirmPassword: string;
@@ -21,6 +31,7 @@ export const register: Register = async ({
   phone,
   image,
   email,
+  class: _class,
   publicKey,
 }) => {
   try {
@@ -35,6 +46,7 @@ export const register: Register = async ({
           phone,
           email,
           image,
+          class: _class,
         },
         publicKey,
       ),

@@ -3,12 +3,28 @@
 import { Button } from "@/components/common/button";
 import { useRef } from "react";
 import { registerServerAction } from "./_action/register";
+import { upload } from "@/libs/utils/image/upload";
+import { fileExtension } from "@/libs/utils/fileExtension";
 
 const RegisterPage = () => {
 	const ref = useRef<HTMLFormElement>(null);
 
 	const registerClientAction = async (formData: FormData) => {
-		const actionData = await registerServerAction(formData);
+		const imageFile = formData.get("image") as File;
+
+		const studentid = formData.get("studentid") as string;
+
+		const imageUrl = await upload(
+			imageFile,
+			`profile/${studentid}.${fileExtension(imageFile.name)}`
+		);
+
+		if (imageUrl.error) {
+			alert("Error - Image not uploaded");
+			return;
+		}
+
+		const actionData = await registerServerAction(formData, imageUrl.data);
 
 		if (actionData) {
 			alert("User Created");
@@ -58,6 +74,23 @@ const RegisterPage = () => {
 					<option value="HEALTH_DATA_SCIENCE">Health Data Science</option>
 					<option value="RESFENTIAL_COLLEGE">Residential College</option>
 				</select>
+				<select className="p-1 rounded" name="class" required>
+					{Array.from({ length: 100 }, (_, index) => index + 1).map(
+						(_, index) => {
+							return (
+								<option key={index} value={`CPE ${index}`}>
+									{`CPE ${index}`}
+								</option>
+							);
+						}
+					)}
+				</select>
+				<input
+					type="file"
+					name="image"
+					accept="image/*"
+					id="image-register-input"
+				/>
 				<Button type="submit" buttonStyle={{}}>
 					Create User
 				</Button>
