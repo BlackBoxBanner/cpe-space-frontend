@@ -3,7 +3,7 @@
 import { RegisterProps, register } from "@/libs/utils/auth/register";
 import { getResKey } from "@/libs/utils/encryption/publicKey";
 
-export const registerServerAction = async (formData: FormData) => {
+export const registerServerAction = async (formData: FormData, image: string) => {
   const data: RegisterProps = {
     confirmPassword: formData.get("studentid") as string,
     password: formData.get("studentid") as string,
@@ -16,6 +16,8 @@ export const registerServerAction = async (formData: FormData) => {
     name: formData.get("name") as string,
     email: formData.get("email") as string,
     publicKey: (await getResKey()).publicKey,
+    class: formData.get("class") as string,
+    image: image
   };
 
   const res = await register(data);

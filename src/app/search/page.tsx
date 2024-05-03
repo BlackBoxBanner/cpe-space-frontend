@@ -1,36 +1,13 @@
-import { Button } from "@/components/common/button";
+"use client";
+
+import SearchAccounts from "./_component/searchAccounts";
 
 const SearchPage = () => {
+	// TODO - create a search component that will display the search results for accounts, community, and topics
 	return (
 		<>
 			<section>
-				<div>
-					<Button
-						buttonStyle={{
-							size: "min-width",
-							color: "ghost",
-							active: "orange",
-						}}
-					>
-						Accounts
-					</Button>
-					<Button
-						buttonStyle={{
-							size: "min-width",
-							color: "ghost",
-						}}
-					>
-						Community
-					</Button>
-					<Button
-						buttonStyle={{
-							size: "min-width",
-							color: "ghost",
-						}}
-					>
-						Topic
-					</Button>
-				</div>
+				<SearchAccounts />
 			</section>
 		</>
 	);

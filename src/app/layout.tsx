@@ -95,7 +95,7 @@ const MainNavBar = async () => {
 const MainSideBar = async () => {
 	return (
 		<>
-			<nav className="sticky left-0 pr-6">
+			<nav className="sticky overflow-scroll left-0 pr-6">
 				<SideBarButton
 					Icon={() => <BiHome />}
 					title="Home"
@@ -115,7 +115,6 @@ const MainSideBar = async () => {
 					title="Topics"
 				/>
 			</nav>
-
 		</>
 	);
 };
