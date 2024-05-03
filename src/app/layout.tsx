@@ -13,6 +13,7 @@ import { BiHome } from "react-icons/bi";
 import { BiRocket } from "react-icons/bi";
 import { BiHive } from "react-icons/bi";
 import { AiOutlinePushpin } from "react-icons/ai";
+import SideBarCollapsible from "@/components/sidebarcollapsible";
 
 const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({
@@ -94,7 +95,7 @@ const MainNavBar = async () => {
 const MainSideBar = async () => {
 	return (
 		<>
-			<nav className="sticky overflow-scroll left-0 pr-6">
+			<nav className="sticky left-0 pr-6">
 				<SideBarButton
 					Icon={() => <BiHome />}
 					title="Home"
@@ -103,11 +104,13 @@ const MainSideBar = async () => {
 					Icon={() => <BiRocket />}
 					title="Trending"
 				/>
-				<SideBarButton
+				<hr className="my-2 border-t border-gray" />
+				<SideBarCollapsible
 					Icon={() => <BiHive />}
 					title="Communities"
 				/>
-				<SideBarButton
+				<hr className="my-2 border-t border-gray" />
+				<SideBarCollapsible
 					Icon={() => <AiOutlinePushpin />}
 					title="Topics"
 				/>

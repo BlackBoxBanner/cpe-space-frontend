@@ -15,7 +15,7 @@ const SideBarButton = ({ Icon, title, active }: SideBarButtonProps) => {
                     border: "none",
                     active: active ? "orange" : undefined
                 }}>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-5">
                     <Icon />
                     {title}
                 </div>
