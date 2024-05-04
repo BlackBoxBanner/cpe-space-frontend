@@ -1,11 +1,11 @@
 import zod from 'zod';
 import validator from 'validator';
 
-const RoleEnum = zod.enum(['ADMIN', 'STUDENT', 'TEACHER', 'OFFICER']);
+export const RoleEnum = zod.enum(['ADMIN', 'STUDENT', 'TEACHER', 'OFFICER']);
 
-const CommunitiesStatusEnum = zod.enum(['PUBLIC', 'PRIVATE']);
+export const CommunitiesStatusEnum = zod.enum(['PUBLIC', 'PRIVATE']);
 
-const ProgramEnum = zod.enum([
+export const ProgramEnum = zod.enum([
   'REGULAR',
   'INTERNATIONAL',
   'HEALTH_DATA_SCIENCE',
@@ -33,6 +33,15 @@ export const CommunitiesSchema = zod.object({
   image: zod.string(),
   status: CommunitiesStatusEnum.default('PUBLIC'),
   createdAt: zod.date().default(() => new Date()),
+});
+
+export const CommunitiesFormSchema = CommunitiesSchema.omit({
+  id: true,
+  userId: true,
+  createdAt: true,
+});
+export const CommunitiesUpdateFormSchema = CommunitiesSchema.omit({
+  createdAt: true,
 });
 
 export const TopicSchema = zod.object({
