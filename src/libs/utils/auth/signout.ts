@@ -1,8 +1,8 @@
-import { cookies } from "next/headers"
+import { cookies } from 'next/headers';
 
 export const signout = async () => {
-  const cookieStore = cookies()
+  const cookieStore = cookies();
 
-  cookieStore.delete("cpe_space_session")
-  cookieStore.delete("user-id")
-}
+  cookieStore.delete('cpe_space_session');
+  cookieStore.delete('user-id');
+};

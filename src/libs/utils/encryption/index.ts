@@ -1,5 +1,5 @@
-import { generateAesKey } from "@/libs/utils/encryption/generate";
-import forge from "node-forge";
+import { generateAesKey } from '@/libs/utils/encryption/generate';
+import forge from 'node-forge';
 
 type AesKeyPair = {
   key: string;
@@ -33,15 +33,15 @@ export const encrypt: Encrypt = (data, publicKey) => {
 
 type EncryptedWithAes = (
   data: unknown,
-  aesKey: AesKeyPair["key"],
+  aesKey: AesKeyPair['key'],
 ) => {
   encryptedData: string;
-  iv: AesKeyPair["iv"];
+  iv: AesKeyPair['iv'];
 };
 
 const encryptWithAes: EncryptedWithAes = (data, aesKey) => {
   const iv = forge.random.getBytesSync(16);
-  const cipher = forge.cipher.createCipher("AES-GCM", aesKey);
+  const cipher = forge.cipher.createCipher('AES-GCM', aesKey);
   cipher.start({ iv: forge.util.createBuffer(iv), tagLength: 128 });
   cipher.update(forge.util.createBuffer(JSON.stringify(data)));
   cipher.finish();
@@ -51,7 +51,7 @@ const encryptWithAes: EncryptedWithAes = (data, aesKey) => {
 
   return {
     encryptedData: forge.util.encode64(encrypted.toHex()),
-    iv: forge.util.encode64([tag.toHex(), forge.util.bytesToHex(iv)].join("")),
+    iv: forge.util.encode64([tag.toHex(), forge.util.bytesToHex(iv)].join('')),
   };
 };
 
@@ -59,6 +59,6 @@ type EncryptWithPublicKey = (data: AesKeyPair, publicKeyPem: string) => string;
 
 const encryptWithPublicKey: EncryptWithPublicKey = (data, publicKeyPem) => {
   const publicKey = forge.pki.publicKeyFromPem(publicKeyPem);
-  const encryptedAesKey = publicKey.encrypt(JSON.stringify(data), "RSA-OAEP");
+  const encryptedAesKey = publicKey.encrypt(JSON.stringify(data), 'RSA-OAEP');
   return forge.util.encode64(encryptedAesKey);
 };

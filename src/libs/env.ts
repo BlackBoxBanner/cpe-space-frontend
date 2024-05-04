@@ -1,17 +1,17 @@
-import zod from "zod";
+import zod from 'zod';
 
 const envSchema = zod.object({
   API_TOKEN: zod.string({
     required_error:
-      "The NEXT_PUBLIC_API_TOKEN environment variable is required",
+      'The NEXT_PUBLIC_API_TOKEN environment variable is required',
   }),
   BACKEND_URL: zod.string({
     required_error:
-      "The NEXT_PUBLIC_BACKEND_URL environment variable is required",
+      'The NEXT_PUBLIC_BACKEND_URL environment variable is required',
   }),
   BACKEND_HOSTNAME: zod.string({
     required_error:
-      "The NEXT_PUBLIC_BACKEND_HOSTNAME environment variable is required",
+      'The NEXT_PUBLIC_BACKEND_HOSTNAME environment variable is required',
   }),
 });
 

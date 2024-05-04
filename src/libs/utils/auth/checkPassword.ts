@@ -1,17 +1,18 @@
-"use server";
+'use server';
 
-import { UserType } from "@/types/zodSchema";
-import { axios } from "@/libs/axiosInstance";
-import { ReturnResponse } from "@/types/ResponseType";
-import { encrypt } from "@/libs/utils/encryption";
+import { UserType } from '@/types/zodSchema';
+import { axios } from '@/libs/axiosInstance';
+import { ReturnResponse } from '@/types/ResponseType';
+import { encrypt } from '@/libs/utils/encryption';
 
-type CheckPasswordProps = Pick<UserType, "studentid" | "password"> & {
+type CheckPasswordProps = Pick<UserType, 'studentid' | 'password'> & {
   publicKey: string;
 };
 
-type CheckPasswordHandler<J = CheckPasswordProps, T = ReturnResponse<string>> = (
-  props: J,
-) => Promise<T>;
+type CheckPasswordHandler<
+  J = CheckPasswordProps,
+  T = ReturnResponse<string>,
+> = (props: J) => Promise<T>;
 
 export const checkPassword: CheckPasswordHandler<CheckPasswordProps> = async ({
   password,
@@ -19,7 +20,7 @@ export const checkPassword: CheckPasswordHandler<CheckPasswordProps> = async ({
   publicKey,
 }) => {
   try {
-    const res = await axios.post("/api/auth/check-password", {
+    const res = await axios.post('/api/auth/check-password', {
       data: encrypt({ password, studentid }, publicKey),
     });
 

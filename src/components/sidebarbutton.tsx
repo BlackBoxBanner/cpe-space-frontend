@@ -1,27 +1,28 @@
-import { Button } from "./common/button";
+import { Button } from './common/button';
 
 type SideBarButtonProps = {
-    Icon: () => React.ReactNode
-    title: string
-    active?: boolean
-}
+  Icon: () => React.ReactNode;
+  title: string;
+  active?: boolean;
+};
 
 const SideBarButton = ({ Icon, title, active }: SideBarButtonProps) => {
-    return (
-        <>
-            <Button
-                buttonStyle={{
-                    color: "ghost",
-                    border: "none",
-                    active: active ? "orange" : undefined
-                }}>
-                <div className="flex items-center gap-5">
-                    <Icon />
-                    {title}
-                </div>
-            </Button>
-        </>
-    );
+  return (
+    <>
+      <Button
+        buttonStyle={{
+          color: 'ghost',
+          border: 'none',
+          active: active ? 'orange' : undefined,
+        }}
+      >
+        <div className="flex items-center gap-5">
+          <Icon />
+          {title}
+        </div>
+      </Button>
+    </>
+  );
 };
 
 export default SideBarButton;

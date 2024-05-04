@@ -1,10 +1,10 @@
-export async function getBase64(file: File):Promise<string> {
+export async function getBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(file)
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
     reader.onload = () => {
-      resolve(reader.result as string)
-    }
-    reader.onerror = reject
-  })
+      resolve(reader.result as string);
+    };
+    reader.onerror = reject;
+  });
 }

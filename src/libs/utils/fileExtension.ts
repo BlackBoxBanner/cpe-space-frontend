@@ -3,6 +3,6 @@ export const fileExtension = (originalName: string | undefined) => {
   if (match) {
     return match[1];
   } else {
-    return ""
+    return '';
   }
-}
+};

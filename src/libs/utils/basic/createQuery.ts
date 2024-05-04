@@ -1,30 +1,29 @@
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useCallback } from 'react';
 
 export const useSearchQuery = () => {
-
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const createQueryString = useCallback(
-    (...prams: { name: string, value: string }[]) => {
-      const params = new URLSearchParams(searchParams.toString())
+    (...prams: { name: string; value: string }[]) => {
+      const params = new URLSearchParams(searchParams.toString());
       prams.forEach(({ name, value }) => {
-        params.set(name, value)
-      })
+        params.set(name, value);
+      });
 
-      return params.toString()
+      return params.toString();
     },
-    [searchParams]
-  )
+    [searchParams],
+  );
 
   const routeWithQuery = useCallback(
-    (...prams: { name: string, value: string }[]) => {
-      router.push(`${pathname}?${createQueryString(...prams)}`)
+    (...prams: { name: string; value: string }[]) => {
+      router.push(`${pathname}?${createQueryString(...prams)}`);
     },
-    [router, pathname, createQueryString]
-  )
+    [router, pathname, createQueryString],
+  );
 
-  return { routeWithQuery, createQueryString, searchParams }
-}
+  return { routeWithQuery, createQueryString, searchParams };
+};

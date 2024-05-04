@@ -1,7 +1,7 @@
-import { axios } from "@/libs/axiosInstance";
-import { env } from "@/libs/env";
-import { ReturnResponse } from "@/types/ResponseType";
-import { isAxiosError } from "axios";
+import { axios } from '@/libs/axiosInstance';
+import { env } from '@/libs/env';
+import { ReturnResponse } from '@/types/ResponseType';
+import { isAxiosError } from 'axios';
 
 type DeleteImage = (path: string) => Promise<ReturnResponse<string>>;
 
@@ -16,7 +16,7 @@ export const deleteImage: DeleteImage = async (path: string) => {
       return error.response?.data;
     }
     return {
-      error: { customError: "An error occurred while uploading the image" },
+      error: { customError: 'An error occurred while uploading the image' },
     };
   }
 };

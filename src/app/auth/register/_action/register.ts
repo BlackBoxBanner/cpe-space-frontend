@@ -1,28 +1,31 @@
-"use server"
+'use server';
 
-import { RegisterProps, register } from "@/libs/utils/auth/register";
-import { getResKey } from "@/libs/utils/encryption/publicKey";
+import { RegisterProps, register } from '@/libs/utils/auth/register';
+import { getResKey } from '@/libs/utils/encryption/publicKey';
 
-export const registerServerAction = async (formData: FormData, image: string) => {
+export const registerServerAction = async (
+  formData: FormData,
+  image: string,
+) => {
   const data: RegisterProps = {
-    confirmPassword: formData.get("studentid") as string,
-    password: formData.get("studentid") as string,
-    studentid: formData.get("studentid") as string,
-    program: formData.get("program") as
-      | "REGULAR"
-      | "INTERNATIONAL"
-      | "HEALTH_DATA_SCIENCE"
-      | "RESFENTIAL_COLLEGE",
-    name: formData.get("name") as string,
-    email: formData.get("email") as string,
+    confirmPassword: formData.get('studentid') as string,
+    password: formData.get('studentid') as string,
+    studentid: formData.get('studentid') as string,
+    program: formData.get('program') as
+      | 'REGULAR'
+      | 'INTERNATIONAL'
+      | 'HEALTH_DATA_SCIENCE'
+      | 'RESFENTIAL_COLLEGE',
+    name: formData.get('name') as string,
+    email: formData.get('email') as string,
     publicKey: (await getResKey()).publicKey,
-    class: formData.get("class") as string,
-    image: image
+    class: formData.get('class') as string,
+    image: image,
   };
 
   const res = await register(data);
 
-  return !res.error
+  return !res.error;
 
   // if (!res.error) permanentRedirect("/auth/register");
 };
