@@ -29,7 +29,7 @@ const MainNavBar = async () => {
             <BiChat className={cn('fill-alabaster')} />
           </Link>
           <Link href="/profile" passHref legacyBehavior>
-            <div className="rounded-full aspect-square w-10 overflow-hidden">
+            <div className="rounded-full aspect-square w-10 overflow-hidden bg-alabaster">
               <Image
                 width={300}
                 height={300}

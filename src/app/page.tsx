@@ -1,10 +1,11 @@
 import { Button, Link } from '@/components/common/button';
 import { axios } from '@/libs/axiosInstance';
 import { signout } from '@/libs/utils/auth/signout';
-import { cn } from '@dookdiks/utils';
 import { redirect } from 'next/navigation';
+import CreatePost from './_components/createpost';
+import PostBox from './_components/postbox';
+export default async function Home() {
 
-export default function Home() {
   const formAction = async (formData: FormData) => {
     'use server';
 
@@ -25,19 +26,13 @@ export default function Home() {
     redirect('/');
   };
   return (
-    <main className={cn('')}>
-      <form action={formAction}>
-        <input type="text" name="studentid" />
-        <button type="submit">sent</button>
-      </form>
+    <div>
+      <CreatePost/>
+      <hr className="my-2 border-t border-gray mb-4" />
+      <PostBox/>
       <form action={signOutFormAction}>
         <Button type="submit">Signout</Button>
       </form>
-      <div className="h-screen">test</div>
-      <div className="h-screen">test</div>
-      <div className="h-screen">test</div>
-      <div className="h-screen">test</div>
-      <div className="h-screen">test</div>
-    </main>
+    </div>
   );
 }
