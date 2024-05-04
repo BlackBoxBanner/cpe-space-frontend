@@ -2,7 +2,6 @@ import SideBarButton from "@/components/sidebarbutton";
 import SideBarCollapsible from "@/components/sidebarcollapsible";
 import { AiOutlinePushpin } from "react-icons/ai";
 import { BiHive, BiHome, BiRocket } from "react-icons/bi";
-
 const MainSideBar = async () => {
 	return (
 		<>

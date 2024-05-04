@@ -2,14 +2,13 @@ import { cn } from "@dookdiks/utils";
 import Link from "next/link";
 import { BiBell, BiChat } from "react-icons/bi";
 import { FaRegCircle } from "react-icons/fa";
+import SearchForm from "./searchForm";
 
 const MainNavBar = async () => {
 	return (
 		<>
-			<nav className="h-[4.25rem] relative flex justify-between items-center px-4 ">
-				<form method="get" action={"/search"}>
-					<input type="search" name="input" id="search-input" />
-				</form>
+			<nav className="h-[4.25rem] relative grid grid-cols-[1fr,auto] items-center px-4 ">
+				<SearchForm />
 				<div className="flex gap-4">
 					<Link href="/notification" passHref legacyBehavior>
 						<BiBell className={cn("fill-alabaster")} />
