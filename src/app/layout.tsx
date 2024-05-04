@@ -3,15 +3,9 @@ import { Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { cn } from "@dookdiks/utils";
 import { cookies } from "next/headers";
-import { BiBell } from "react-icons/bi";
-import { BiChat } from "react-icons/bi";
-import { FaRegCircle } from "react-icons/fa";
-import Link from "next/link";
-import SideBarButton from "@/components/sidebarbutton";
-import { BiHome } from "react-icons/bi";
-import { BiRocket } from "react-icons/bi";
-import { BiHive } from "react-icons/bi";
-import { AiOutlinePushpin } from "react-icons/ai";
+import MainLayout from "./_components/mainLayout";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const outfit = Outfit({ variable: "--font-outfit", subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({
@@ -43,62 +37,14 @@ export default async function RootLayout({
 					"font-sans bg-liberty min-h-dvh overflow-auto"
 				)}
 			>
-				{session && user ? <MainLayout>{children}</MainLayout> : children}
+				{session && user ? (
+					<Suspense fallback={<Loading />}>
+						<MainLayout>{children}</MainLayout>{" "}
+					</Suspense>
+				) : (
+					children
+				)}
 			</body>
 		</html>
 	);
 }
-
-const MainLayout = async ({ children }: { children: React.ReactNode }) => {
-	return (
-		<>
-			<header className="sticky top-0 z-50">
-				<MainNavBar />
-			</header>
-			<div className="h-full grid grid-rows-[1fr,auto]">
-				<section className="bg-alabaster max-h-[85.5dvh] overflow-hidden rounded-[1.75rem] grid grid-cols-[350px,auto,1fr] gap-x-6 p-4 relative">
-					<MainSideBar />
-					<span className="border-r border-r-smoky-black" />
-					<div className="overflow-auto min-h-screen">{children}</div>
-				</section>
-				<footer className="h-12"></footer>
-			</div>
-		</>
-	);
-};
-
-const MainNavBar = async () => {
-	return (
-		<>
-			<nav className="h-[4.25rem] relative flex justify-between items-center px-4 ">
-				<form method="get" action={"/search"}>
-					<input type="search" name="input" id="search-input" />
-				</form>
-				<div className="flex gap-4">
-					<Link href="/notification" passHref legacyBehavior>
-						<BiBell className={cn("fill-alabaster")} />
-					</Link>
-					<Link href="/chat" passHref legacyBehavior>
-						<BiChat className={cn("fill-alabaster")} />
-					</Link>
-					<Link href="/profile" passHref legacyBehavior>
-						<FaRegCircle />
-					</Link>
-				</div>
-			</nav>
-		</>
-	);
-};
-
-const MainSideBar = async () => {
-	return (
-		<>
-			<nav className="sticky overflow-scroll left-0 pr-6">
-				<SideBarButton Icon={() => <BiHome />} title="Home" />
-				<SideBarButton Icon={() => <BiRocket />} title="Trending" />
-				<SideBarButton Icon={() => <BiHive />} title="Communities" />
-				<SideBarButton Icon={() => <AiOutlinePushpin />} title="Topics" />
-			</nav>
-		</>
-	);
-};

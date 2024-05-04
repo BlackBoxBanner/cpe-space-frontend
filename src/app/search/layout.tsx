@@ -4,6 +4,8 @@ import {
 	CategorySearchSectionProps,
 } from "./_component/categorySearchSection";
 import { SearchProvider } from "./_component/searchContext";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default function AuthLayout({
 	children,
@@ -31,7 +33,7 @@ export default function AuthLayout({
 					<div className={cn("flex justify-end gap-4")}>
 						<CategorySearchSection list={categoryButtonList} />
 					</div>
-					{children}
+					<Suspense fallback={<Loading />}>{children}</Suspense>
 				</section>
 			</SearchProvider>
 		</>

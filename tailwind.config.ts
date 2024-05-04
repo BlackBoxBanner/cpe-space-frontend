@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     colors: {
+      transparent: "transparent",
       "smoky-black": "#0D0D0D",
       alabaster: "#F3F4E5",
       gray: "#B7B6BF",
