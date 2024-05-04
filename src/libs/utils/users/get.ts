@@ -1,8 +1,10 @@
 import { axios } from '@/libs/axiosInstance';
 import { ReturnResponse } from '@/types/ResponseType';
-import { UserType } from '@/types/zodSchema';
+import { UserSchema } from '@/types/zodSchema';
+import { z } from 'zod';
 
-// type UserResponse = ReturnResponse<Omit<UserType, "password">>
+type UserType = z.infer<typeof UserSchema>
+
 type UsersResponse = ReturnResponse<Omit<UserType, 'password'>[]>;
 
 export const getUsers = async (props?: Partial<UserType>) => {
