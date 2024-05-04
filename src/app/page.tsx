@@ -1,8 +1,5 @@
-import { Button, Link } from "@/components/common/button";
 import { axios } from "@/libs/axiosInstance";
-import { signout } from "@/libs/utils/auth/signout";
 import { cn } from "@dookdiks/utils";
-import { redirect } from "next/navigation";
 
 export default function Home() {
 	const formAction = async (formData: FormData) => {
@@ -19,25 +16,12 @@ export default function Home() {
 		}
 	};
 
-	const signOutFormAction = async (formData: FormData) => {
-		"use server";
-		await signout();
-		redirect("/");
-	};
 	return (
 		<main className={cn("")}>
 			<form action={formAction}>
 				<input type="text" name="studentid" />
 				<button type="submit">sent</button>
 			</form>
-			<form action={signOutFormAction}>
-				<Button type="submit">Signout</Button>
-			</form>
-			<div className="h-screen">test</div>
-			<div className="h-screen">test</div>
-			<div className="h-screen">test</div>
-			<div className="h-screen">test</div>
-			<div className="h-screen">test</div>
 		</main>
 	);
 }
