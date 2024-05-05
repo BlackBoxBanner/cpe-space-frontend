@@ -3,7 +3,7 @@ import { ReturnResponse } from '@/types/ResponseType';
 import { UserSchema } from '@/types/zodSchema';
 import { z } from 'zod';
 
-type UserType = z.infer<typeof UserSchema>
+type UserType = z.infer<typeof UserSchema>;
 
 type UsersResponse = ReturnResponse<Omit<UserType, 'password'>[]>;
 

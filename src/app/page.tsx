@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation';
 import CreatePost from './_components/createpost';
 import PostBox from './_components/postbox';
 export default async function Home() {
-
   const formAction = async (formData: FormData) => {
     'use server';
 
@@ -27,9 +26,9 @@ export default async function Home() {
   };
   return (
     <div>
-      <CreatePost/>
+      <CreatePost />
       <hr className="my-2 border-t border-gray mb-4" />
-      <PostBox/>
+      <PostBox />
       <form action={signOutFormAction}>
         <Button type="submit">Signout</Button>
       </form>
