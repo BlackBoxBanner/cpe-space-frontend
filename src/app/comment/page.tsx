@@ -41,7 +41,7 @@ const CommentPage = async () => {
                 />
               </div>
               <div className="border border-[#0D0D0D] p-2 text-xs rounded-2xl flex justify-between w-full items-center">
-                <input type="text" className="outline-none w-full" />
+                <input type="text" className="outline-none w-full text-sm" />
                 <div className="flex gap-2">
                   <AiOutlineFile className="cursor-pointer" style={{ fontSize: '20px' }} />
                   <IoArrowUpCircle className={cn('fill-orange', 'cursor-pointer')} style={{ fontSize: '20px' }} />
