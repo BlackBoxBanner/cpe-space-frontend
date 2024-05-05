@@ -1,9 +1,7 @@
-import { Button } from './common/button';
-
 type StatusboxProps = {
   Icon: () => React.ReactNode;
   title: string;
-  color?: string;
+  color: string;
 };
 
 const StatusBox = ({ Icon, title,color }: StatusboxProps) => {
