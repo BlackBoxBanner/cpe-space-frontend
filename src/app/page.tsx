@@ -3,7 +3,7 @@ import { axios } from '@/libs/axiosInstance';
 import { signout } from '@/libs/utils/auth/signout';
 import { redirect } from 'next/navigation';
 import CreatePost from './_components/createpost';
-import PostBox from './_components/postbox';
+import PostBox from './_components/mainpostbox.tsx/postbox';
 export default async function Home() {
   const formAction = async (formData: FormData) => {
     'use server';
