@@ -21,7 +21,7 @@ const CommunitiesTopPart = async () => {
         <div className="relative">
           <Image src={commuimage} width={800} height={230} alt="" className="w-[1100px] h-[160px]" />
           <div className="absolute bottom-3 left-8">
-            <div className="font-bold text-[50px] text-yellow-orange ">
+            <div className="font-bold text-[50px] text-yellow-orange font-decorate">
               CPE 35
             </div>
           </div>
