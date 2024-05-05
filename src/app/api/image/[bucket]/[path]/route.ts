@@ -1,4 +1,3 @@
-import { env } from '@/libs/env';
 import { imagePath } from '@/libs/utils/image/get';
 import { type NextRequest, NextResponse } from 'next/server';
 

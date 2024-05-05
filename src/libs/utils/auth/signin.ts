@@ -1,10 +1,9 @@
-'use client';
-
-import { UserType } from '@/types/zodSchema';
-import axios from 'axios';
-import { axios as axiosInstance } from '@/libs/axiosInstance';
-import { ReturnResponse } from '@/types/ResponseType';
 import { encrypt } from '@/libs/utils/encryption';
+import { z } from 'zod';
+import { UserSchema } from '@/types/zodSchema';
+import { signInAction } from '@/action/auth';
+
+type UserType = z.infer<typeof UserSchema>;
 
 export type SigninProps = Pick<UserType, 'studentid' | 'password'> & {
   publicKey: string;
@@ -19,21 +18,9 @@ export const signinNext = async ({
   studentid,
   publicKey,
 }: SigninProps) => {
-  try {
-    const res = await fetch('/api/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        data: encrypt({ password, studentid }, publicKey),
-      }),
-    });
+  const signinRes = await signInAction(
+    encrypt({ password, studentid }, publicKey),
+  );
 
-    // if (res.status != 200) throw new Error(res.json());
-
-    return res.json();
-  } catch (error: any) {
-    return error.response?.data;
-  }
+  return signinRes;
 };

@@ -1,9 +1,10 @@
-'use server';
-
-import { UserType } from '@/types/zodSchema';
 import { axios } from '@/libs/axiosInstance';
 import { ReturnResponse } from '@/types/ResponseType';
 import { encrypt } from '@/libs/utils/encryption';
+import { z } from 'zod';
+import { UserSchema } from '@/types/zodSchema';
+
+type UserType = z.infer<typeof UserSchema>;
 
 type CheckPasswordProps = Pick<UserType, 'studentid' | 'password'> & {
   publicKey: string;

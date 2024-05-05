@@ -14,6 +14,8 @@ export const getUsers = async (props?: Partial<UserType>) => {
     });
     return res.data as UsersResponse;
   } catch (error: any) {
+    console.log(error);
+
     return error.response.data as UsersResponse;
   }
 };

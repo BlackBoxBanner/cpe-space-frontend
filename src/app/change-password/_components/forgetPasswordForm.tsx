@@ -7,7 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/common/button';
 import { axios } from '@/libs/axiosInstance';
 import { ReturnResponse } from '@/types/ResponseType';
-import { useState } from 'react';
 import { Input } from '@/app/auth/_component/input';
 import { useRouter } from 'next/navigation';
 

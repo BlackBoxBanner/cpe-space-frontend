@@ -2,9 +2,9 @@
 
 import { Button } from '@/components/common/button';
 import { useRef } from 'react';
-import { registerServerAction } from './_action/register';
 import { upload } from '@/libs/utils/image/upload';
 import { fileExtension } from '@/libs/utils/fileExtension';
+import { registerAction } from '@/action/auth';
 
 const RegisterPage = () => {
   const ref = useRef<HTMLFormElement>(null);
@@ -24,7 +24,7 @@ const RegisterPage = () => {
       return;
     }
 
-    const actionData = await registerServerAction(formData, imageUrl.data);
+    const actionData = await registerAction(formData, imageUrl.data);
 
     if (actionData) {
       alert('User Created');

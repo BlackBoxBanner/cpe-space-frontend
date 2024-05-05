@@ -42,7 +42,7 @@ export const SigninForm = ({ rsaKey, studentid }: SigninFormProps) => {
       publicKey: rsaKey,
     });
 
-    if (signinRes.error) {
+    if (signinRes?.error) {
       return setError('password', {
         message: 'Invalid student ID or password',
       });

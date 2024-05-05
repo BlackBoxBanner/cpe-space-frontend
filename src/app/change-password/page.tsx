@@ -1,7 +1,10 @@
 import { cn } from '@dookdiks/utils';
 import ChangePasswordForm from './_components/forgetPasswordForm';
 import { axios } from '@/libs/axiosInstance';
-import { UserType } from '@/types/zodSchema';
+import { z } from 'zod';
+import { UserSchema } from '@/types/zodSchema';
+
+type UserType = z.infer<typeof UserSchema>;
 
 const ChangePasswordPage = async () => {
   const users = await axios.get<{ data: UserType[] }>('/api/user', {});

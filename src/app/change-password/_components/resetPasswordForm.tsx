@@ -1,9 +1,11 @@
 'use client';
 
-import { Input, Password } from '@/app/auth/_component/input';
+import { Password } from '@/app/auth/_component/input';
 import { Button } from '@/components/common/button';
 import RightArrow from '@/components/icon/rightArrow';
-import { changePassword } from '@/libs/utils/auth/changePassword';
+import { axios } from '@/libs/axiosInstance';
+import { encrypt } from '@/libs/utils/encryption';
+import { ReturnResponse } from '@/types/ResponseType';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -40,13 +42,20 @@ const ResetPasswordForm = ({
     }
     console.log({ studentid });
 
-    const res = await changePassword({
-      publicKey: resKey,
-      studentid,
-      password: data.password,
-    });
+    const res = await axios.post<ReturnResponse<string>>(
+      'api/auth/change-password',
+      {
+        data: encrypt(
+          {
+            studentid,
+            password: data.password,
+          },
+          resKey,
+        ),
+      },
+    );
 
-    if (res.error) {
+    if (res.data.error) {
       return setError('confirmPassword', {
         message: 'Invalid student ID or password',
       });

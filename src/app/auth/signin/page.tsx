@@ -2,7 +2,10 @@ import { cn } from '@dookdiks/utils';
 import { SigninForm } from '@/app/auth/_component/signinForm';
 import { getResKey } from '@/libs/utils/encryption/publicKey';
 import { axios } from '@/libs/axiosInstance';
-import { UserType } from '@/types/zodSchema';
+import { UserSchema } from '@/types/zodSchema';
+import { z } from 'zod';
+
+type UserType = z.infer<typeof UserSchema>;
 
 const SignInPage = async () => {
   const rsaKey = await getResKey();

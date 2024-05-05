@@ -1,9 +1,10 @@
-'use server';
-
+import { UserSchema } from '@/types/zodSchema';
 import { ReturnResponse } from '@/types/ResponseType';
-import { UserType } from '@/types/zodSchema';
 import { axios } from '@/libs/axiosInstance';
 import { encrypt } from '@/libs/utils/encryption';
+import { z } from 'zod';
+
+type UserType = z.infer<typeof UserSchema>;
 
 type ChangePassword = (
   props: Pick<UserType, 'studentid' | 'password'> & {
