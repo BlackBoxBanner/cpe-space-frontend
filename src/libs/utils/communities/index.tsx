@@ -41,7 +41,7 @@ export const postCommunities = async (props: CommunitiesFormType) => {
       CommunitiesFormType,
       ReturnResponse<CommunitiesType>
     >('api/communities', {
-      body: props,
+      data: props,
     });
     return res.data;
   } catch (error: any) {

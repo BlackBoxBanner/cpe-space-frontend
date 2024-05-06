@@ -1,11 +1,10 @@
-import Image from "next/image";
-import commuimage from '@/assets/welcome/comuphoto.png';
+import Image from 'next/image';
+import commuimage from '@/assets/welcome/communityDefault.png';
 import { cookies } from 'next/headers';
 import { getUsers } from '@/libs/utils/users/get';
-import { Button } from "@/components/common/button";
+import { Button } from '@/components/common/button';
 
 const CommunitiesTopPart = async () => {
-
   const cookieStore = cookies();
 
   const userId = await cookieStore.get('user-id');
@@ -19,7 +18,13 @@ const CommunitiesTopPart = async () => {
     <>
       <div className="flex">
         <div className="relative">
-          <Image src={commuimage} width={800} height={230} alt="" className="w-[1100px] h-[160px]" />
+          <Image
+            src={commuimage}
+            width={800}
+            height={230}
+            alt=""
+            className="w-[1100px] h-[160px]"
+          />
           <div className="absolute bottom-3 left-8">
             <div className="font-bold text-[50px] text-yellow-orange font-decorate">
               CPE 35
@@ -45,7 +50,12 @@ const CommunitiesTopPart = async () => {
                 </div>
               </div>
             </div>
-            <Button type="submit" className="w-full bg-liberty hover:bg-[#9EAAC9] border-none h-8 flex items-center justify-center mt-9 rounded-xl">Leave community</Button>
+            <Button
+              type="submit"
+              className="w-full bg-liberty hover:bg-[#9EAAC9] border-none h-8 flex items-center justify-center mt-9 rounded-xl"
+            >
+              Leave community
+            </Button>
           </div>
         </div>
       </div>

@@ -33,7 +33,6 @@ const SearchForm = () => {
             <AiOutlineSearch className="fill-liberty" />
             <input
               className="appearance-none placeholder:text-liberty text-liberty bg-transparent font-light w-full focus:outline-none focus:ring-0 flex items-center justify-center"
-              defaultValue={''}
               value={searchInput}
               onChange={e => setSearchInput(e.target.value)}
               type="text"

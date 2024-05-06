@@ -6,6 +6,7 @@ const instance = axios.create({
   headers: {
     Authorization: `Bearer ${env.API_TOKEN}`,
   },
+  withCredentials: true,
 });
 
 export { instance as axios };
