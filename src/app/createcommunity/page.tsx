@@ -7,7 +7,7 @@ const CreateCommunity = () => {
 
     return (
         <>
-            <div className="text-[35px] font-bold mb-4 font-sans">Create community</div>
+            <div className="text-[35px] font-bold mb-4 font-decorate">Create community</div>
             <div className="bg-white border border-[#0D0D0D] rounded-2xl p-3 flex mb-3">
                 <input type="text" className="outline-none w-full" placeholder="Community name" />
             </div>
