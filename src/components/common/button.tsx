@@ -15,7 +15,7 @@ export const buttonVariants = tv({
       link: 'text-liberty hover:text-[#9EAAC9]',
     },
     size: {
-      sm: ' w-full',
+      sm: 'py-2 px-4 text-sm rounded-lg min-w-16 w-full',
       md: 'py-3 px-2 text-base rounded-lg min-w-20 w-full',
       lg: 'py-5 px-4 text-[1.6rem] rounded-xl min-w-40 w-full',
       free: '',

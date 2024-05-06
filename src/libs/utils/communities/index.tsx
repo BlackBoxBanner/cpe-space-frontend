@@ -8,17 +8,20 @@ import { z } from 'zod';
 
 type CommunitiesType = z.infer<typeof CommunitiesSchema>;
 
-type GetCommunitiesProps = Pick<CommunitiesType, 'name' | 'status' | 'id'>;
+type GetCommunitiesProps = Partial<
+  Pick<CommunitiesType, 'name' | 'status' | 'id'>
+>;
 
 export const getCommunities = async (props: GetCommunitiesProps) => {
   try {
     const res = await axios.get<
       CommunitiesType[],
-      ReturnResponse<CommunitiesType[]>
+      ReturnResponse<{ data: CommunitiesType[] }>
     >('api/communities', {
       params: props,
     });
-    return res.data;
+
+    return res.data?.data;
   } catch (error: any) {
     return error.response.data as CommunitiesType[];
   }
