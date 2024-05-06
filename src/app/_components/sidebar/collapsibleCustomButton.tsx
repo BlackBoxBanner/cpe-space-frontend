@@ -41,8 +41,8 @@ export const CustomCommunitiesButton: CollapsibleTrigerCustomProps = ({
         )}
       >
         <Link
-          // TODO: Change href
-          href="/create-community"
+          href="/community/create"
+          onClick={_ => showTrigger()}
           buttonStyle={{
             size: 'sm',
           }}
@@ -91,8 +91,8 @@ export const CustomTopicsButton: CollapsibleTrigerCustomProps = ({
         )}
       >
         <Link
-          // TODO: Change href
-          href="/create-topic"
+          href="/topic/create"
+          onClick={_ => showTrigger()}
           buttonStyle={{
             size: 'sm',
           }}
