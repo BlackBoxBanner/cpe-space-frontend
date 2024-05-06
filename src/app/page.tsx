@@ -25,9 +25,9 @@ export default async function Home() {
     redirect('/');
   };
   return (
-    <div>
+    <div className="flex flex-col gap-6">
       <CreatePost />
-      <hr className="my-2 border-t border-gray mb-4" />
+      <hr className="my-2 border-t border-gray" />
       <PostBox />
       <form action={signOutFormAction}>
         <Button type="submit">Signout</Button>

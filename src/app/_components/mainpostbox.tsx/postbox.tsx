@@ -5,10 +5,9 @@ import Link from 'next/link';
 import PostBoxTop from './postboxtop';
 
 const PostBox = () => {
-
   return (
     <>
-      <div className="bg-white w-full border border-[#0D0D0D] rounded-2xl mb-5 pt-3 max-h-[800px] ">
+      <div className="bg-white w-full border border-[#0D0D0D] rounded-2xl pt-3 max-h-[800px] ">
         <PostBoxTop />
         <div className="mt-4  px-3">
           Yes, this article is about some of the longest English words on
@@ -29,15 +28,17 @@ const PostBox = () => {
         </div>
         <div className="bg-liberty flex justify-between p-3 rounded-b-xl mt-4">
           <div className="flex gap-8">
-            <div className='flex gap-1.5 items-center'>
+            <div className="flex gap-1.5 items-center">
               <BsStar className={cn('fill-alabaster', 'cursor-pointer')} />
-              <div className='text-white text-sm'>1.2k</div>
+              <div className="text-white text-sm">1.2k</div>
             </div>
-            <div className='flex gap-1.5 items-center'>
+            <div className="flex gap-1.5 items-center">
               <Link href="/comment" passHref legacyBehavior>
-                <BiMessageSquareDots className={cn('fill-alabaster', 'cursor-pointer')} />
+                <BiMessageSquareDots
+                  className={cn('fill-alabaster', 'cursor-pointer')}
+                />
               </Link>
-              <div className='text-white text-sm'>3k</div>
+              <div className="text-white text-sm">3k</div>
             </div>
           </div>
           <BiShareAlt className={cn('fill-alabaster', 'cursor-pointer')} />

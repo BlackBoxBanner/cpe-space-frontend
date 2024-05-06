@@ -16,10 +16,10 @@ const CreatePost = async () => {
   if (user.error) throw new Error('unable to get image');
   return (
     <>
-      <Link href="/createpost" passHref legacyBehavior>
-        <div className="bg-white w-full border border-[#0D0D0D] rounded-2xl mb-5 p-3 flex justify-between">
+      <Link href="/createpost">
+        <div className="bg-white w-full border border-[#0D0D0D] rounded-3xl p-3 py-4 text-xl flex justify-between">
           <div className="flex items-center gap-4">
-            <div className="rounded-full aspect-square w-10 overflow-hidden bg-alabaster border border-[#0D0D0D]">
+            <div className="rounded-full aspect-square w-11 overflow-hidden bg-alabaster border border-[#0D0D0D]">
               <Image
                 width={300}
                 height={300}
@@ -32,7 +32,7 @@ const CreatePost = async () => {
             </div>
           </div>
           <div className="content-center ">
-            <BiImage style={{ fontSize: '1.5rem' }} />
+            <BiImage size={28} style={{ fontSize: '1.5rem' }} />
           </div>
         </div>
       </Link>
