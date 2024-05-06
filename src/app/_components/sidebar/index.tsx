@@ -1,5 +1,3 @@
-import Link from 'next/link';
-import { BiHome, BiRocket } from 'react-icons/bi';
 import { getCommunities } from '@/libs/utils/communities';
 import { cookies } from 'next/headers';
 import {
@@ -7,13 +5,13 @@ import {
   SideBarMainSection,
   TopicCollapsibleButton,
 } from './collapsibleCustomButton';
+import { getTopics } from '@/libs/utils/topics';
 
 const MainSideBar = async () => {
   const cookieStore = cookies();
-
   const userId = cookieStore.get('user-id');
-
   const community = await getCommunities({});
+  const topics = await getTopics({});
 
   if (!userId?.value) throw new Error('User not found');
 
@@ -31,7 +29,7 @@ const MainSideBar = async () => {
         <div className="px-2">
           <hr className="my-2 border-t border-gray-white" />
         </div>
-        <TopicCollapsibleButton topics={[]} />
+        <TopicCollapsibleButton topics={topics} />
       </nav>
     </>
   );
