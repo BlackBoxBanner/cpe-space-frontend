@@ -8,10 +8,10 @@ const MainLayout = async ({ children }: { children: React.ReactNode }) => {
         <MainNavBar />
       </header>
       <div className="h-full grid grid-rows-[1fr,auto]">
-        <section className="bg-alabaster max-h-[85.5dvh] overflow-hidden rounded-[1.75rem] grid grid-cols-[350px,auto,1fr] gap-x-4 p-4 relative">
+        <section className="bg-alabaster max-h-[85.5dvh] overflow-hidden rounded-[1.75rem] grid grid-cols-[350px,auto,1fr] gap-x-8 p-4 relative">
           <MainSideBar />
           <span className="border-r border-r-smoky-black" />
-          <div className="overflow-auto min-h-screen">{children}</div>
+          <div className="overflow-auto min-h-screen pr-4">{children}</div>
         </section>
         <footer className="h-12"></footer>
       </div>
