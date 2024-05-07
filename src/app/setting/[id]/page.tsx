@@ -3,7 +3,7 @@ import UserInfoSetting from '../../profile/[id]/userInfoSetting';
 import { cookies } from 'next/headers';
 import { getUsers } from '@/libs/utils/users/get';
 
-const UserProfilePage = async () => {
+const UserSettingPage = async () => {
     const cookieStore = cookies();
 
     const userId = await cookieStore.get('user-id');
@@ -24,4 +24,4 @@ const UserProfilePage = async () => {
   );
 };
 
-export default UserProfilePage;
+export default UserSettingPage;

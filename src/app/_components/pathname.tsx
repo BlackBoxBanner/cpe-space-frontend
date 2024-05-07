@@ -8,5 +8,6 @@ export function IsProfile({
 }: Readonly<{ children: React.ReactNode; render: React.ReactNode }>) {
   const pathname = usePathname();
 
-  return pathname.startsWith('/profile') ? render : children;
+  return (pathname.startsWith('/profile')||pathname.startsWith('/setting')) ? render : children;
+  
 }
