@@ -16,7 +16,7 @@ const CreatePost = async () => {
   if (user.error) throw new Error('unable to get image');
   return (
     <>
-      <Link href="/createpost">
+      <Link href="/post/create">
         <div className="bg-white w-full border border-[#0D0D0D] rounded-3xl p-3 py-4 text-xl flex justify-between">
           <div className="flex items-center gap-4">
             <div className="rounded-full aspect-square w-11 overflow-hidden bg-alabaster border border-[#0D0D0D]">
