@@ -40,7 +40,7 @@ type TopicListProps = {
   topic: TopicType;
 };
 
-const TopicList = ({ topic }: TopicListProps) => {
+export const TopicList = ({ topic }: TopicListProps) => {
   return (
     <div className={cn('flex gap-4 border-b border-gray-white py-8')}>
       <div className="flex items-center rounded-3xl h-28 text-alabaster stroke-smoky-black border border-smoky-black w-full bg-yellow-orange p-8 text-[4rem] relative">

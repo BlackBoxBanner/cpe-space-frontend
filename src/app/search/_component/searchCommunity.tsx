@@ -46,7 +46,7 @@ type CommunityListProps = {
   community: CommunityType;
 };
 
-const CommunityList = ({ community }: CommunityListProps) => {
+export const CommunityList = ({ community }: CommunityListProps) => {
   return (
     <div className={cn('flex border-b border-gray-white py-8')}>
       <div className="overflow-hidden w-full rounded-3xl border border-smoky-black relative">
@@ -75,6 +75,7 @@ const CommunityList = ({ community }: CommunityListProps) => {
                 width={1000}
                 height={1000}
                 alt={`profile image of ${community.owner.name}`}
+                className="bg-cover object-cover w-full h-full"
               />
             </div>
           </div>
