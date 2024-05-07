@@ -8,7 +8,7 @@ export type UserInfoProps = {
     user: string
 };
 
-const UserInfoSetting = async ({ header, user }: UserInfoProps) => {
+const UserInfoProfile = async ({ header, user }: UserInfoProps) => {
     return (
         <div>
         <div className='flex justify-center m-8 mt-3'>
@@ -22,4 +22,4 @@ const UserInfoSetting = async ({ header, user }: UserInfoProps) => {
     );
 };
 
-export default UserInfoSetting;
+export default UserInfoProfile;
