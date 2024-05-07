@@ -47,9 +47,12 @@ const CreatePostTopPart = async () => {
                 />
 
             </div>
-            <div className='text-4xl my-6'>
-                Does anyone have old midterm exams paper of CPE101 
-                ? Thank you.
+            <div className='text-4xl my-6 w-full '>
+            <textarea
+                        placeholder="Write..."
+                        className='outline-none w-full'
+                        rows={4}
+                    />
             </div>
         </div>
     )
