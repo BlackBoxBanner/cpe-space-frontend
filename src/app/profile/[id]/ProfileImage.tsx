@@ -17,7 +17,7 @@ const ProfileImage = async () => {
     <div>
       <div className="bg-smoky-black h-[92vh] rounded-xl overflow-hidden m-8 border border-smoky-black relative">
         <Image
-          className=""
+          className="bg-cover object-cover w-full h-full"
           width={3000}
           height={3000}
           src={`/api/image/${user.data[0].image}`}
