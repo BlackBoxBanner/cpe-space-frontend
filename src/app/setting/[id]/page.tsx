@@ -1,4 +1,4 @@
-import SettingImage from '../../profile/[id]/settingImage';
+import SettingImage from '../../profile/[id]/ProfileImage';
 import UserInfoSetting from '../../profile/[id]/userInfoProfile';
 import { cookies } from 'next/headers';
 import { getUsers } from '@/libs/utils/users/get';
