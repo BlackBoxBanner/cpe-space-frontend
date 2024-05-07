@@ -10,14 +10,9 @@ export type UserInfoProps = {
 
 const UserInfoProfile = async ({ header, user }: UserInfoProps) => {
     return (
-        <div>
-        <div className='flex justify-center m-8 mt-3'>
-            <div className='font-decorate font-bold text-[60px]'>Greeting</div>
-        </div>
-        <div>
-            {header}
-            {user}
-        </div>
+        <div className='grid grid-cols-2 text-lg ml-8'>
+            <div className='mb-4'>{header}</div>
+            <div>{user}</div>
         </div>
     );
 };
