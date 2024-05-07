@@ -56,7 +56,7 @@ const Collapsible = ({
   return (
     <>
       <div className={cn('flex flex-col gap-0 relative')}>
-        <div className="py-4 px-4">
+        <div className="pt-4 px-4">
           <div className="flex gap-5 items-center text-liberty fill-liberty group text-xl font-light">
             <div className="group-hover:text-[#9EAAC9] ease-in-out duration-300">
               <TrigerIcon />
@@ -86,7 +86,7 @@ const Collapsible = ({
         <div
           className={cn(
             'flex flex-col max-h-48 h-48 gap-1 overflow-auto pl-4',
-            trigger ? 'pt-2' : 'pt-0',
+            trigger ? 'pt-4' : 'pt-0',
           )}
         >
           {trigger &&
