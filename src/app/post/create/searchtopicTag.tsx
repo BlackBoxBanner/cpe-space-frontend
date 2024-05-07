@@ -25,16 +25,22 @@ const TopicDisplayTag = () => {
             });
     }, []);
 
-    const handleTopicClick = (TopicName: string) => {
-        if (selectedTopic.includes(TopicName)) {
-            setSelectedTopic(selectedTopic.filter(name => name !== TopicName));
+    const handleTopicClick = (topicName: string) => {
+        let updatedSelectedTopics: string[];
+
+        if (selectedTopic.includes(topicName)) {
+            updatedSelectedTopics = selectedTopic.filter(name => name !== topicName);
         } else {
-            setSelectedTopic([...selectedTopic, TopicName]);
+            updatedSelectedTopics = [...selectedTopic, topicName];
         }
+
+        setSelectedTopic(updatedSelectedTopics);
+
+        console.log(updatedSelectedTopics);
     };
 
-    const filteredData = data.filter(Topic =>
-        Topic.name.toLowerCase().includes(searchInput.toLowerCase())
+    const filteredData = data.filter(topic =>
+        topic.name.toLowerCase().includes(searchInput.toLowerCase())
     );
 
     return (
@@ -51,17 +57,17 @@ const TopicDisplayTag = () => {
                     />
                 </div>
                 <div className='flex'>
-                    {filteredData.map((Topic, index) => (
+                    {filteredData.map((topic, index) => (
                         <div
                             className={cn('border border-smoky-black flex p-2 rounded-full justify-center items-center mr-2 w-40 cursor-pointer', {
-                                'bg-liberty': selectedTopic.includes(Topic.name),
-                                'text-white': selectedTopic.includes(Topic.name),
-                                'border-none': selectedTopic.includes(Topic.name)
+                                'bg-liberty': selectedTopic.includes(topic.name),
+                                'text-white': selectedTopic.includes(topic.name),
+                                'border-none': selectedTopic.includes(topic.name)
                             })}
-                            key={`Topic-${index}`}
-                            onClick={() => handleTopicClick(Topic.name)}
+                            key={`topic-${index}`}
+                            onClick={() => handleTopicClick(topic.name)}
                         >
-                            <div>{Topic.name}</div>
+                            <div>{topic.name}</div>
                         </div>
                     ))}
                 </div>
