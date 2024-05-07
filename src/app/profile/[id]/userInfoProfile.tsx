@@ -10,8 +10,8 @@ export type UserInfoProps = {
 
 const UserInfoProfile = async ({ header, user }: UserInfoProps) => {
     return (
-        <div className='grid grid-cols-2 text-lg ml-8'>
-            <div className='mb-4'>{header}</div>
+        <div className='grid grid-cols-2 text-xl mx-8'>
+            <div className='mb-8'>{header}</div>
             <div>{user}</div>
         </div>
     );
