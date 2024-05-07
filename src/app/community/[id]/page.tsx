@@ -1,12 +1,27 @@
 import { CommunityList } from '@/app/search/_component/searchCommunity';
 import { axios } from '@/libs/axiosInstance';
 import { z } from 'zod';
-import { CommunitiesSchema, UserSchema } from '@/types/zodSchema';
+import {
+  CommentSchema,
+  CommunitiesSchema,
+  PostSchema,
+  PostTopicSchema,
+  TopicSchema,
+  UserSchema,
+} from '@/types/zodSchema';
 import CreatePost from '@/app/_components/createpost';
 
 type UserType = z.infer<typeof UserSchema>;
 type CommunityType = z.infer<typeof CommunitiesSchema> & {
   owner: Pick<UserType, 'name' | 'id' | 'image'>;
+};
+
+type PostType = z.infer<typeof PostSchema> & {
+  user: UserType;
+  PostTopic: z.infer<typeof PostTopicSchema>;
+  comments: z.infer<typeof CommentSchema>;
+  communities: z.infer<typeof CommunitiesSchema>;
+  topics: z.infer<typeof TopicSchema>;
 };
 
 const Communities = async ({ params: { id } }: { params: { id: string } }) => {
@@ -19,11 +34,9 @@ const Communities = async ({ params: { id } }: { params: { id: string } }) => {
 
   // TODO - get Post from Post API
 
-  const postData = await axios.get('/api/posts', {
+  const postData = await axios.get<{ data: PostType[] }>('/api/post', {
     params: { communitiesId: id },
   });
-
-  console.log(postData.data);
 
   return (
     <>
