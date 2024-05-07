@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { BiBell, BiChat } from 'react-icons/bi';
 import SearchForm from './searchForm';
 import { cookies } from 'next/headers';
-import { getUsers } from '@/libs/utils/users/get';
+import { getUsers } from '@/libs/utils/users';
 import Image from 'next/image';
 
 const MainNavBar = async () => {

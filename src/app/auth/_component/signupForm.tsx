@@ -9,7 +9,7 @@ import { Controller, useForm } from 'react-hook-form';
 import zod from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { checkPassword } from '@/libs/utils/auth/checkPassword';
-import { getUsers } from '@/libs/utils/users/get';
+import { getUsers } from '@/libs/utils/users';
 import { changePassword } from '@/libs/utils/auth/changePassword';
 import { useRouter } from 'next/navigation';
 

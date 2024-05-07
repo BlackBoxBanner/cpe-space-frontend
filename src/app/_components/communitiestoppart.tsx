@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import commuimage from '@/assets/welcome/communityDefault.png';
 import { cookies } from 'next/headers';
-import { getUsers } from '@/libs/utils/users/get';
+import { getUsers } from '@/libs/utils/users';
 import { Button } from '@/components/common/button';
 
 const CommunitiesTopPart = async () => {

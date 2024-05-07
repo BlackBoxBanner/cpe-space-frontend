@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { cookies } from 'next/headers';
-import { getUsers } from '@/libs/utils/users/get';
+import { getUsers } from '@/libs/utils/users';
 import { BiImage } from 'react-icons/bi';
 
 const CreatePost = async () => {

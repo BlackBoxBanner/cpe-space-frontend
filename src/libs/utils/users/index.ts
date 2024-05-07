@@ -19,3 +19,5 @@ export const getUsers = async (props?: Partial<UserType>) => {
     return error.response.data as UsersResponse;
   }
 };
+
+const updateUser = async (props: Partial<Omit<UserType, 'password'>>) => {};
