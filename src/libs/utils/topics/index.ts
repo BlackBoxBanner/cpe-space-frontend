@@ -18,7 +18,7 @@ export const getTopics = async (props: GetTopicsProps) => {
 
     return res.data?.data;
   } catch (error: any) {
-    return error.response.data;
+    return error.response.data as TopicsType[];
   }
 };
 
@@ -27,11 +27,11 @@ export const createTopic = async (props: Pick<TopicsType, 'name'>) => {
     const res = await axios.post<TopicsType, ReturnResponse<TopicsType>>(
       'api/topic',
       {
-        body: props,
+        data: props,
       },
     );
-    return res.data;
+    return res;
   } catch (error: any) {
-    return error.response.data;
+    return error.response.data as ReturnResponse<TopicsType>;
   }
 };
