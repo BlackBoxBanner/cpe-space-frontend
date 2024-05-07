@@ -1,5 +1,5 @@
-import SettingImage from '../../profile/[id]/ProfileImage';
-import UserInfoSetting from '../../profile/[id]/userInfoProfile';
+import UserInfoSetting from './userInfoSetting';
+import SettingImage from './SettingImage';
 import { cookies } from 'next/headers';
 import { getUsers } from '@/libs/utils/users/get';
 
