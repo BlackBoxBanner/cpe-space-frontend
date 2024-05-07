@@ -4,7 +4,7 @@ import { UserSchema } from '@/types/zodSchema';
 import { z } from 'zod';
 
 const SettingContainer = ({ children }: { children: React.ReactNode }) => {
-  return <div className="grid grid-cols-[1fr,auto,1fr]">{children}</div>;
+  return <div className="grid grid-cols-[1fr,1fr,4rem]">{children}</div>;
 };
 
 type UserType = z.infer<typeof UserSchema>;
