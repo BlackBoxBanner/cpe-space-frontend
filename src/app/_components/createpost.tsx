@@ -25,6 +25,7 @@ const CreatePost = async () => {
                 height={300}
                 src={`/api/image/${user.data[0].image}`}
                 alt={user.data[0].studentid}
+                className="bg-cover object-cover w-full h-full"
               />
             </div>
             <div className="text-[#BEBFB6]">

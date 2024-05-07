@@ -1,12 +1,12 @@
 import StatusBox from '@/components/statusbox';
-import CommunitiesTopPart from '../../_components/communitiestoppart';
+
 import CreatePost from '../../_components/createpost';
 import { BiBookOpen } from 'react-icons/bi';
 
 const Communities = () => {
   return (
     <>
-      <CommunitiesTopPart />
+      {/* <CommunitiesTopPart /> */}
       <hr className="border-t border-gray mx-3 my-7" />
       <CreatePost />
       <StatusBox
