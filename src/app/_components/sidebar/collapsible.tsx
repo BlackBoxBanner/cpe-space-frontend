@@ -85,8 +85,8 @@ const Collapsible = ({
         </div>
         <div
           className={cn(
-            'flex flex-col max-h-48 h-48 gap-2 overflow-auto pl-4',
-            trigger ? 'pt-4' : 'pt-0',
+            'flex flex-col max-h-48 h-48 gap-1 overflow-auto pl-4',
+            trigger ? 'pt-2' : 'pt-0',
           )}
         >
           {trigger &&

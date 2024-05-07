@@ -6,6 +6,8 @@ import { cookies } from 'next/headers';
 import MainLayout from './_components/mainLayout';
 import { Suspense } from 'react';
 import Loading from './loading';
+import { IsProfile } from './_components/pathname';
+import { usePathname } from 'next/navigation';
 
 const outfit = Outfit({ variable: '--font-outfit', subsets: ['latin'] });
 const spaceGrotesk = Space_Grotesk({
@@ -27,6 +29,17 @@ export default async function RootLayout({
 
   const session = cookieStore.get('cpe_space_session');
   const user = cookieStore.get('user-id');
+  const profile = cookieStore.get('profile');
+
+  const isLogin = !!session?.value && !!user?.value;
+  const isProfile = !!profile?.value;
+
+  const IsSignIn = ({
+    children,
+    render,
+  }: Readonly<{ children: React.ReactNode; render: React.ReactNode }>) => {
+    return isLogin ? render : children;
+  };
 
   return (
     <html lang="en">
@@ -37,13 +50,17 @@ export default async function RootLayout({
           'font-sans bg-liberty min-h-dvh overflow-auto',
         )}
       >
-        {session && user ? (
-          <Suspense fallback={<Loading />}>
-            <MainLayout>{children}</MainLayout>{' '}
-          </Suspense>
-        ) : (
-          children
-        )}
+        <Suspense fallback={<Loading />}>
+          <IsSignIn
+            render={
+              <IsProfile render={children}>
+                <MainLayout>{children}</MainLayout>
+              </IsProfile>
+            }
+          >
+            {children}
+          </IsSignIn>
+        </Suspense>
       </body>
     </html>
   );
