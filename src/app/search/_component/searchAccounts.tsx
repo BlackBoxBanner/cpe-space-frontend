@@ -31,8 +31,6 @@ const AccountDisplay = ({ search }: AccountDisplayProps) => {
       });
   }, []);
 
-  console.log('data', data);
-
   return data.map((user, index) => {
     return <AccountList user={user} key={`account-display-${index}`} />;
   });
@@ -55,6 +53,7 @@ const AccountList = ({ user }: AccountListProps) => {
           width={1000}
           height={1000}
           alt={`profile image of ${user.name}`}
+          className="object-cover bg-cover h-full w-full"
         />
       </div>
       <div className={cn('flex flex-col ')}>
