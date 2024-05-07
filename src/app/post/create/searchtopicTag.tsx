@@ -9,14 +9,14 @@ type TopicType = {
     name: string;
 };
 
-const TopicListTag = () => {
+const TopicDisplayTag = () => {
     const [data, setData] = useState<TopicType[]>([]);
     const [searchInput, setSearchInput] = useState<string>('');
     const [selectedTopic, setSelectedTopic] = useState<string[]>([]);
 
     useEffect(() => {
         axios
-            .get<{ data: TopicType[] }>('/api/topic/search')
+            .get<{ data: TopicType[] }>('/api/Topic')
             .then(res => {
                 setData(res.data.data);
             })
@@ -70,4 +70,4 @@ const TopicListTag = () => {
     );
 };
 
-export default TopicListTag;
+export default TopicDisplayTag;
