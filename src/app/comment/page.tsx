@@ -20,7 +20,7 @@ const CommentPage = async () => {
   return (
     <>
       <PostBox />
-      <div className="bg-white w-full border border-[#0D0D0D] rounded-2xl mb-5 pt-3 max-h-[800px]">
+      <div className="bg-white w-full border border-[#0D0D0D] rounded-2xl mt-5 pt-3 max-h-[800px]">
         <div>
           <div>
             <PostBoxProfile />
