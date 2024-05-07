@@ -150,7 +150,7 @@ export const CommunitiesCollapsibleButton = ({
               ''
             ),
           title: community.name,
-          match: community.id,
+          match: `community/${community.id}`,
         })),
   };
 
@@ -175,7 +175,7 @@ export const TopicCollapsibleButton = ({
       : topics.map(topic => ({
           icon: () => <></>,
           title: topic.name,
-          match: topic.id,
+          match: `topic/${topic.id}`,
         })),
   };
 

@@ -96,7 +96,7 @@ const Collapsible = ({
                   <div className="relative w-8">
                     <span className="absolute w-5 h-9 border-l border-b rounded-bl-xl -top-4 left-2 border-gray-white" />
                   </div>
-                  <Link href={`${match}`} passHref legacyBehavior>
+                  <Link href={`/${match}`} passHref legacyBehavior>
                     <Button
                       buttonStyle={{
                         color: 'ghost',

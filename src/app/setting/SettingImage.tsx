@@ -9,34 +9,39 @@ import { z } from 'zod';
 import { deleteImage } from '@/libs/utils/image/delete';
 import { upload } from '@/libs/utils/image/upload';
 import { fileExtension } from '@/libs/utils/fileExtension';
+import { ChangeEvent, useState } from 'react';
 
 type UserType = z.infer<typeof UserSchema>;
 
 const SettingImage = async ({ user }: { user: Omit<UserType, 'password'> }) => {
-  const clientAction = async (formData: FormData) => {
-    const image = formData.get('image') as File;
+  const [image, setImage] = useState<string>(user.image);
+
+  const onImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const image = e.target.files?.[0] as File;
 
     if (!image) return;
 
-    await deleteImage(user.image);
+    // await deleteImage(user.image);
 
-    await upload(
-      image,
-      `profile/${user.studentid}.${fileExtension(image.name)}`,
-    );
+    // await upload(
+    //   image,
+    //   `profile/${user.studentid}.${fileExtension(image.name)}`,
+    // );
+
+    setImage(`profile/${user.studentid}.${fileExtension(image.name)}`);
   };
   return (
     <div>
       <div className="bg-smoky-black h-[92vh] rounded-xl overflow-hidden m-8 border border-smoky-black relative">
         <Image
-          className=""
+          className="bg-cover object-cover w-full h-full"
           width={3000}
           height={3000}
-          src={`/api/image/${user.image}`}
+          src={`/api/image/${image}`}
           alt={user.studentid}
         />
         <label
-          htmlFor="image-community-create-input"
+          htmlFor="image-setting-update"
           className="absolute bottom-4 right-4 bg-liberty aspect-square w-16 flex justify-center items-center cursor-pointer rounded-full"
         >
           <BiCamera size={30} className="text-white text-xl" />
@@ -49,6 +54,7 @@ const SettingImage = async ({ user }: { user: Omit<UserType, 'password'> }) => {
           accept="image/*"
           id="image-setting-update"
           className="hidden absolute"
+          onChange={onImageChange}
         />
       </form>
     </div>

@@ -20,4 +20,20 @@ export const getUsers = async (props?: Partial<UserType>) => {
   }
 };
 
-const updateUser = async (props: Partial<Omit<UserType, 'password'>>) => {};
+export const updateUser = async (
+  props: Partial<Omit<UserType, 'password'>>,
+) => {
+  try {
+    const res = await axios.patch<ReturnResponse<Omit<UserType, 'password'>>>(
+      'api/user',
+      {
+        data: props,
+      },
+    );
+    return res.data as UsersResponse;
+  } catch (error: any) {
+    console.log(error);
+
+    return error.response.data as UsersResponse;
+  }
+};
