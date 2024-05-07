@@ -12,7 +12,7 @@ const UserInfoProfile = async ({ header, user }: UserInfoProps) => {
     return (
         <div>
         <div className='flex justify-center m-8 mt-3'>
-            <div className='font-decorate font-bold text-[60px]'>Settings</div>
+            <div className='font-decorate font-bold text-[60px]'>Greeting</div>
         </div>
         <div>
             {header}

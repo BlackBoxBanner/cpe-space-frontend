@@ -1,7 +1,7 @@
-import SettingImage from './ProfileImage';
-import UserInfoSetting from './userInfoProfile';
 import { cookies } from 'next/headers';
 import { getUsers } from '@/libs/utils/users/get';
+import ProfileImage from './ProfileImage';
+import UserInfoProfile from './userInfoProfile';
 
 const UserProfilePage = async () => {
     const cookieStore = cookies();
@@ -16,8 +16,8 @@ const UserProfilePage = async () => {
 
   return (
     <div className="bg-alabaster h-screen grid grid-cols-2 gap-4">
-      <SettingImage/>
-      <UserInfoSetting
+      <ProfileImage/>
+      <UserInfoProfile
       header='First name'
       user={user.data[0].name}/>
     </div>
