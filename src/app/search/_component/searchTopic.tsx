@@ -20,7 +20,7 @@ const TopicDisplay = ({ search }: TopicDisplayProps) => {
 
   useEffect(() => {
     axios
-      .get<{ data: TopicType[] }>('/api/topic', {
+      .get<{ data: TopicType[] }>('/api/topic/search', {
         params: { search },
       })
       .then(res => {
