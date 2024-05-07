@@ -6,8 +6,6 @@ import UserInfoProfile from './userInfoProfile';
 const UserProfilePage = async ({ params }: { params: { id: string } }) => {
   const user = await getUsers({ id: params.id });
 
-  console.log(user);
-
   if (user.error || user.data.length == 0) throw new Error('No user found');
 
   const firstName = user.data[0].name.split(' ')[0];

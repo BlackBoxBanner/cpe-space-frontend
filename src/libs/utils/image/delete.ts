@@ -8,7 +8,7 @@ type DeleteImage = (path: string) => Promise<ReturnResponse<string>>;
 export const deleteImage: DeleteImage = async (path: string) => {
   try {
     const res = await axios.delete<ReturnResponse<string>>(
-      `${env.BACKEND_URL}/api/image/delete/${path}`,
+      `/api/image/delete/${path}`,
     );
     return res.data;
   } catch (error: unknown) {

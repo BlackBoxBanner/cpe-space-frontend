@@ -2,6 +2,7 @@ import UserInfoSetting from './userInfoSetting';
 import SettingImage from './SettingImage';
 import { cookies } from 'next/headers';
 import { getUsers } from '@/libs/utils/users';
+import { EditFirstNameForm } from './editForm';
 
 const UserSettingPage = async () => {
   const cookieStore = cookies();
@@ -20,7 +21,14 @@ const UserSettingPage = async () => {
   return (
     <div className="bg-alabaster h-screen grid grid-cols-2 gap-4">
       <SettingImage user={userData} />
-      <UserInfoSetting header="First name" user={user.data[0].name} />
+      <div className="p-8">
+        <div className="flex justify-center text-center w-full text-[4rem]">
+          <p>Settings</p>
+        </div>
+        <div className="flex flex-col ">
+          <EditFirstNameForm user={userData} />
+        </div>
+      </div>
     </div>
   );
 };

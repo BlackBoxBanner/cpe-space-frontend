@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { cookies } from 'next/headers';
-import { getUsers } from '@/libs/utils/users';
+import { getUsers, updateUser } from '@/libs/utils/users';
 import { BiCamera } from 'react-icons/bi';
 import { UserSchema } from '@/types/zodSchema';
 import { z } from 'zod';
@@ -17,16 +17,22 @@ const SettingImage = async ({ user }: { user: Omit<UserType, 'password'> }) => {
   const [image, setImage] = useState<string>(user.image);
 
   const onImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     const image = e.target.files?.[0] as File;
 
     if (!image) return;
 
-    // await deleteImage(user.image);
+    await deleteImage(user.image);
 
-    // await upload(
-    //   image,
-    //   `profile/${user.studentid}.${fileExtension(image.name)}`,
-    // );
+    await upload(
+      image,
+      `profile/${user.studentid}.${fileExtension(image.name)}`,
+    );
+
+    await updateUser({
+      id: user.id,
+      image: `profile/${user.studentid}.${fileExtension(image.name)}`,
+    });
 
     setImage(`profile/${user.studentid}.${fileExtension(image.name)}`);
   };
