@@ -26,11 +26,17 @@ const CommunityDisplayTag = () => {
     }, []);
 
     const handleCommunityClick = (communityName: string) => {
+        let updatedCommunities: string[];
+
         if (selectedCommunities.includes(communityName)) {
-            setSelectedCommunities(selectedCommunities.filter(name => name !== communityName));
+            updatedCommunities = selectedCommunities.filter(name => name !== communityName);
         } else {
-            setSelectedCommunities([...selectedCommunities, communityName]);
+            updatedCommunities = [...selectedCommunities, communityName];
         }
+
+        setSelectedCommunities(updatedCommunities);
+
+        console.log(updatedCommunities);
     };
 
     const filteredData = data.filter(community =>
