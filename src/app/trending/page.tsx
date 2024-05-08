@@ -16,3 +16,4 @@ export default async function Trending() {
     </div>
   );
 }
+export default Trending;
