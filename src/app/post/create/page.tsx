@@ -1,19 +1,25 @@
-import CreatePostTopPart from './_components/createPostTop';
-import TagOfCreatePost from './_components/tagOfCreatePost';
+import { cookies } from 'next/headers';
+import { getUsers } from '@/libs/utils/users';
+import CreatePostForm from '../_components/createPostForm';
 
 const CreatePostPage = async () => {
+  const cookieStore = cookies();
+
+  const userId = await cookieStore.get('user-id');
+
+  if (!userId) return;
+
+  const user = await getUsers({ id: userId.value });
+
+  if (user.error) throw new Error('unable to get image');
   return (
     <div>
-      <div className="flex justify-center">
-        <div className="text-[3.5rem] font-bold font-decorate">Create post</div>
-      </div>
-      <form className="bg-white w-full p-4 rounded-xl border border-smoky-black mt-6">
-        <div>
-          <CreatePostTopPart />
-          <hr className="my-2 border-t border-gray" />
-          <TagOfCreatePost />
+      <div className="flex justify-center flex-col">
+        <div className="text-[3.5rem] font-bold font-decorate w-full text-center">
+          Create post
         </div>
-      </form>
+        <CreatePostForm user={user.data[0]} />
+      </div>
     </div>
   );
 };

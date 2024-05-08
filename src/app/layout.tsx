@@ -8,6 +8,7 @@ import { Suspense } from 'react';
 import Loading from './loading';
 import { IsProfile } from './_components/pathname';
 import { usePathname } from 'next/navigation';
+import { CreatePostProvider } from './post/_components/context';
 
 const outfit = Outfit({ variable: '--font-outfit', subsets: ['latin'] });
 const spaceGrotesk = Space_Grotesk({
@@ -53,9 +54,11 @@ export default async function RootLayout({
         <Suspense fallback={<Loading />}>
           <IsSignIn
             render={
-              <IsProfile render={children}>
-                <MainLayout>{children}</MainLayout>
-              </IsProfile>
+              <CreatePostProvider>
+                <IsProfile render={children}>
+                  <MainLayout>{children}</MainLayout>
+                </IsProfile>
+              </CreatePostProvider>
             }
           >
             {children}

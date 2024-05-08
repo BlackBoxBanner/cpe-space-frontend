@@ -1,23 +1,17 @@
+'use client';
+
 import Image from 'next/image';
-import { cookies } from 'next/headers';
-import { getUsers } from '@/libs/utils/users';
 import { BiImage } from 'react-icons/bi';
-import { cn } from '@dookdiks/utils';
 import { TextArea } from './customTextArea';
+import { z } from 'zod';
+import { UserSchema } from '@/types/zodSchema';
+import { useCreatePostContext } from './context';
 
-const CreatePostTopPart = async () => {
-  const cookieStore = cookies();
+type UserType = z.infer<typeof UserSchema>;
+const CreatePostTopPart = ({ user }: { user: Omit<UserType, 'password'> }) => {
+  const firstName = user.name.split(' ')[0];
+  const lastName = user.name.split(' ')[1];
 
-  const userId = await cookieStore.get('user-id');
-
-  if (!userId) return;
-
-  const user = await getUsers({ id: userId.value });
-
-  if (user.error) throw new Error('unable to get image');
-
-  const firstName = user.data[0].name.split(' ')[0];
-  const lastName = user.data[0].name.split(' ')[1];
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -26,8 +20,8 @@ const CreatePostTopPart = async () => {
             <Image
               width={300}
               height={300}
-              src={`/api/image/${user.data[0].image}`}
-              alt={user.data[0].studentid}
+              src={`/api/image/${user.image}`}
+              alt={user.studentid}
             />
           </div>
           <div className="text-2xl ml-3">

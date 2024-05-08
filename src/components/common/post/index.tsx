@@ -41,6 +41,9 @@ export const Post = ({
   const toggleShowComment = () => {
     setShowComment(e => !e);
   };
+
+  console.log(post);
+
   return (
     <section className={cn('flex flex-col gap-4')}>
       <div

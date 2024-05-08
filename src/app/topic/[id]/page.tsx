@@ -15,9 +15,11 @@ const TopicPage = async ({ params: { id } }: { params: { id: string } }) => {
         <div className="my-8">
           <CreatePost />
         </div>
-        {topic[0].posts.map(post => (
-          <Post key={post.id} post={post} />
-        ))}
+        <div className="flex flex-col gap-8">
+          {topic[0].posts.map(post => (
+            <Post key={post.id} post={post} />
+          ))}
+        </div>
       </section>
     </>
   );
