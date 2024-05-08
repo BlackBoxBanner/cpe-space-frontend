@@ -55,7 +55,7 @@ const TopicDisplayTag = () => {
             onChange={e => setSearchInput(e.target.value)}
           />
         </div>
-        <div className="flex">
+        <div className="flex w-[45rem] overflow-scroll">
           {filteredData.map((topic, index) => (
             <div
               className={cn(

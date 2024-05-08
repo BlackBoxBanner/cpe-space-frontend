@@ -58,7 +58,7 @@ const CommunityDisplayTag = () => {
             onChange={e => setSearchInput(e.target.value)}
           />
         </div>
-        <div className="flex">
+        <div className="flex w-[45rem] overflow-scroll">
           {filteredData.map((community, index) => (
             <div
               className={cn(
