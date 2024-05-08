@@ -1,8 +1,14 @@
+import { PostType } from '@/components/common/post';
 import { axios } from '@/libs/axiosInstance';
 import { ReturnResponse } from '@/types/ResponseType';
 import {
+  CommentSchema,
   CommunitiesSchema,
   CommunitiesUpdateFormSchema,
+  PostLikesSchema,
+  PostSchema,
+  TopicSchema,
+  UserSchema,
 } from '@/types/zodSchema';
 import { z } from 'zod';
 
@@ -11,6 +17,8 @@ type CommunitiesType = z.infer<typeof CommunitiesSchema>;
 type GetCommunitiesProps = Partial<
   Pick<CommunitiesType, 'name' | 'status' | 'id'>
 >;
+
+export type CommunitiesPostType = z.infer<typeof PostSchema> & PostType;
 
 export const getCommunities = async (props: GetCommunitiesProps) => {
   try {
@@ -74,5 +82,22 @@ export const deleteCommunities = async ({ id }: { id: string }) => {
     return res.data;
   } catch (error: any) {
     return error.response.data as CommunitiesType[];
+  }
+};
+
+export const getCommunitiesPost = async (id: string) => {
+  try {
+    const res = await axios.get<
+      any,
+      ReturnResponse<{ data: CommunitiesPostType[] }>
+    >('api/communities/post', {
+      params: {
+        id,
+      },
+    });
+
+    return res.data?.data;
+  } catch (error: any) {
+    return error.response.data as CommunitiesPostType[];
   }
 };

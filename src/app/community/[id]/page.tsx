@@ -10,18 +10,12 @@ import {
   UserSchema,
 } from '@/types/zodSchema';
 import CreatePost from '@/app/_components/createpost';
+import { getCommunitiesPost } from '@/libs/utils/communities';
+import { Post } from '@/components/common/post';
 
 type UserType = z.infer<typeof UserSchema>;
 type CommunityType = z.infer<typeof CommunitiesSchema> & {
   owner: Pick<UserType, 'name' | 'id' | 'image'>;
-};
-
-type PostType = z.infer<typeof PostSchema> & {
-  user: UserType;
-  PostTopic: z.infer<typeof PostTopicSchema>;
-  comments: z.infer<typeof CommentSchema>;
-  communities: z.infer<typeof CommunitiesSchema>;
-  topics: z.infer<typeof TopicSchema>;
 };
 
 const Communities = async ({ params: { id } }: { params: { id: string } }) => {
@@ -32,28 +26,19 @@ const Communities = async ({ params: { id } }: { params: { id: string } }) => {
     },
   );
 
-  // TODO - get Post from Post API
-
-  const postData = await axios.get<{ data: PostType[] }>('/api/post', {
-    params: { communitiesId: id },
-  });
+  const postData = await getCommunitiesPost(id);
 
   return (
     <>
       <section>
         <CommunityList community={communityData.data.data[0]} />
-        <div className="mt-8">
+        <div className="my-8 ">
           <CreatePost />
         </div>
+        <div className="flex flex-col gap-8">
+          {postData?.map(post => <Post key={post.id} post={post} />)}
+        </div>
       </section>
-      {/* <CommunitiesTopPart /> */}
-      {/* <hr className="border-t border-gray mx-3 my-7" />
-      <CreatePost />
-      <StatusBox
-        Icon={() => <BiBookOpen />}
-        title="No post yet"
-        color="bg-[#0D0D0D]"
-      /> */}
     </>
   );
 };
