@@ -22,12 +22,12 @@ const MainNavBar = async () => {
       <nav className="h-[4.25rem] relative grid grid-cols-[1fr,auto] items-center px-4 ">
         <SearchForm />
         <div className="flex gap-6 items-center">
-          <Link href="/notification" passHref>
+          {/* <Link href="/notification" passHref>
             <BiBell size={22} className={cn('fill-alabaster')} />
           </Link>
           <Link href="/chat" passHref>
             <BiChat size={22} className={cn('fill-alabaster')} />
-          </Link>
+          </Link> */}
           <Link href="/setting" passHref legacyBehavior>
             <div className="rounded-full aspect-square w-10 overflow-hidden bg-alabaster cursor-pointer">
               <Image

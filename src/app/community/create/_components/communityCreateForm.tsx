@@ -41,7 +41,7 @@ const CommunityCreateForm = () => {
         return alert('Error - Community not created');
       }
 
-      router.push(`/community/${resCommunity.id}`);
+      router.push(`/`);
     } else {
       const resCommunity = await postCommunities({
         name: name,
@@ -53,7 +53,7 @@ const CommunityCreateForm = () => {
         return alert('Error - Community not created');
       }
 
-      router.push(`/community/${resCommunity.id}`);
+      router.push(`/`);
     }
   };
 

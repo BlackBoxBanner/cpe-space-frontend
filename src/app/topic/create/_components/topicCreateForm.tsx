@@ -16,7 +16,7 @@ const TopicCreateForm = () => {
       return alert(newTopic.error.customError);
     }
 
-    router.push(`/topic/${newTopic.data.id}`);
+    router.push(`/`);
   };
 
   return (
