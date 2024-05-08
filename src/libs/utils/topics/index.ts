@@ -1,3 +1,4 @@
+import { PostType } from '@/components/common/post';
 import { axios } from '@/libs/axiosInstance';
 import { ReturnResponse } from '@/types/ResponseType';
 import {
@@ -13,15 +14,7 @@ type TopicType = z.infer<typeof TopicSchema>;
 
 type GetTopicsProps = Partial<TopicType>;
 
-type PostType = z.infer<typeof PostSchema>;
-
-export type TopicsType = z.infer<typeof TopicSchema> & {
-  user: z.infer<typeof UserSchema>;
-  PostTopic: z.infer<typeof PostSchema>[];
-  comments: z.infer<typeof CommentSchema>[];
-  communities: z.infer<typeof CommunitiesSchema> | null;
-  topics: z.infer<typeof TopicSchema>[];
-};
+export type TopicsType = z.infer<typeof TopicSchema> & { posts: PostType[] };
 
 export const getTopics = async (props: GetTopicsProps) => {
   try {
@@ -53,7 +46,7 @@ export const createTopic = async (props: Pick<TopicType, 'name'>) => {
 };
 
 type TopicPost = TopicType & {
-  post: PostType[];
+  post: z.infer<typeof PostSchema>[];
 };
 
 export const getTopicsPost = async (id: string) => {

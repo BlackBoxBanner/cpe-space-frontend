@@ -24,6 +24,8 @@ const TopicDisplay = ({ search }: TopicDisplayProps) => {
         params: { search },
       })
       .then(res => {
+        console.log(res.data);
+
         setData(res.data.data);
       })
       .catch(err => {
