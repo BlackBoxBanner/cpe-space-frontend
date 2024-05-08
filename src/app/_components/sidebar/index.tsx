@@ -17,7 +17,7 @@ const MainSideBar = async () => {
 
   return (
     <>
-      <nav className="sticky overflow-scroll left-0">
+      <nav className="sticky overflow-scroll left-0 no-scrollbar">
         <SideBarMainSection />
         <div className="px-2">
           <hr className="my-2 border-t border-gray-white" />
